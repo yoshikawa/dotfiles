@@ -48,7 +48,9 @@ fi
 # Go Lang
 
 if [ -x "`which go`" ]; then
-    export GOPATH=$HOME/.go
+    export GOROOT=$HOME/go
+    export PATH=$PATH:$GOROOT/bin
+    export GOPATH=$HOME/go
     export PATH=$PATH:$GOPATH/bin
 fi
 
