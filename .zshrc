@@ -1,6 +1,7 @@
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
@@ -10,6 +11,10 @@ alias l='ls -ltr'
 alias la='ls -la'
 alias ll='ls -l'
 alias rezsh="exec $SHELL -l"
+alias g='cd $(ghq root)/$(ghq list | peco)'
+alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 setopt auto_cd
 setopt auto_list
@@ -48,8 +53,6 @@ fi
 # Go Lang
 
 if [ -x "`which go`" ]; then
-    export GOROOT=$HOME/go
-    export PATH=$PATH:$GOROOT/bin
     export GOPATH=$HOME/go
     export PATH=$PATH:$GOPATH/bin
 fi
