@@ -156,8 +156,6 @@ tap 'homebrew/bundle'
 tap 'homebrew/cask-versions'
 cask 'java8'
 
-tap 'homebrew/php'
-
 tap 'homebrew/services'
 
 tap 'homebrew/cask'
@@ -169,7 +167,6 @@ cask 'google-chrome'
 cask 'iterm2'
 cask 'karabiner-elements'
 cask 'licecap'
-cask 'mactex'
 cask 'netbeans'
 cask 'onedrive'
 cask 'sequel-pro'
@@ -188,9 +185,6 @@ brew 'virt-viewer'
 
 tap 'rcmdnk/file'
 brew 'brew-file'
-
-# Other Homebrew packages
-brew 'gpg-agent'
 
 # Other Cask applications
 cask 'android-sdk'
