@@ -13,7 +13,7 @@ alias l='ls -ltr'
 alias la='ls -la'
 alias ll='ls -l'
 alias rezsh="exec $SHELL -l"
-alias g='cd $(ghq root)/$(ghq list | peco)'
+alias ge='cd $(ghq root)/$(ghq list | peco)'
 alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -55,7 +55,8 @@ fi
 # Go Lang
 
 if [ -x "`which go`" ]; then
-    export GOPATH=$HOME/go
-    export PATH=$PATH:$GOPATH/bin
+  export GOPATH=$HOME
+  export PATH=$PATH:$GOPATH/bin
 fi
+
 
