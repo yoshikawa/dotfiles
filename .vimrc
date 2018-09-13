@@ -28,6 +28,7 @@ set number
 set showmatch
 set shiftwidth=2
 set smarttab
+set viminfofile=NONE
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
