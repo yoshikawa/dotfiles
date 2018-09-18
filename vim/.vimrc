@@ -23,9 +23,9 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'moll/vim-node'
 " JSON
 Plug 'leshill/vim-json'
-" PHPコードフォーマット
+" PHP
+Plug 'StanAngeloff/php.vim'
 Plug 'beanworks/vim-phpfmt'
-" PHP未定義変数・未使用変数を表示
 Plug 'flyinshadow/php_localvarcheck.vim'
 " Ruby
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
