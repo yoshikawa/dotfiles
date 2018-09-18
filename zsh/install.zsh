@@ -23,6 +23,9 @@ sudo apt install curl
 # install zplug
 curl -sL --proto-redir -all,https https://zplug.sh/installer | zsh
 
+# neovim
+sudo apt-get install -y neovim
+
 # golang
 sudo apt install -y golang
 
