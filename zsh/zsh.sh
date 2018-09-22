@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # zsh
-sudo apt-get update
-sudo apt-get install zsh
+sudo apt update
+sudo apt install zsh
 chsh -s `which zsh`
 
 # zsh file

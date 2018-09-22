@@ -1,14 +1,5 @@
 #!/bin/zsh
 
-# zsh
-sudo apt-get update
-sudo apt-get install zsh
-chsh -s `which zsh`
-
-# zsh file
-cp .zshenv ~/.zshenv
-cp .zshrc ~/.zshrc
-
 # chrome
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
@@ -52,7 +43,4 @@ sudo chmod 666 /var/run/docker.sock
 # docker-compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-
-# reboot!
-sudo shutdown -r 0
 
