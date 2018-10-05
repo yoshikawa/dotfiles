@@ -1,11 +1,7 @@
 #!/bin/zsh
-#
-# git
-sudo pacman -S git
-# golang
-sudo pacman -S go
-# docker
+# 
+# base
+sudo pacman -S curl openssh tmux git
+sudo pacman -S go hugo php 
 sudo pacman -S docker
-# yay
-git clone https://aur.archlinux.org/yay.git
-makepkg -si
+
