@@ -39,3 +39,9 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
+if [ -x "`which go`" ]; then
+  export GOPATH=$HOME/go
+  export PATH=$PATH:$GOPATH/bin
+  export GOBIN=$GOPATH/bin
+
+fi
