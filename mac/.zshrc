@@ -2,7 +2,7 @@ autoload -U promptinit; promptinit
 
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 export ZPLUG_HOME=/usr/local/opt/zplug
@@ -55,7 +55,7 @@ fi
 # Go Lang
 
 if [ -x "`which go`" ]; then
-  export GOPATH=$HOME
+  export GOPATH=$HOME/go
   export PATH=$PATH:$GOPATH/bin
 fi
 
