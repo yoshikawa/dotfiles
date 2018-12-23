@@ -1,1 +1,1 @@
-dnf install -y zsh git
+dnf install -y zsh git docker docker-compose ghq peco hub
