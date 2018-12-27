@@ -1,12 +1,6 @@
 autoload -U promptinit; promptinit
 
-export PATH="/usr/local/sbin:$PATH"
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="$HOME/.rbenv/shims:$PATH"
-export PATH="$PATH:$HOME/.composer/vendor/bin"
-
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=~/.zplug
 source $ZPLUG_HOME/init.zsh
 
 # alias
