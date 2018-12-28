@@ -2,8 +2,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
 " Vim Async Process
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" file open
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
+" file tree
+Plug 'scrooloose/nerdtree'
+" Git
+Plug 'tpope/vim-fugitive'
 " Golang
-Plug 'fatih/vim-go',  {'for': 'go'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " JavaScript
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " JavaScript Syntax
@@ -62,6 +69,14 @@ set novisualbell
 set ruler
 set title
 set showcmd
+
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " golang setting
 au FileType go nmap <leader>r <Plug>(go-run)
