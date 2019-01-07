@@ -79,7 +79,10 @@ let g:neocomplete#enable_smart_case = 1
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " golang setting
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+let g:go_fmt_command = "goimports"
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+au FileType go nmap <silent><C-r> :GoRun<CR>
+au FileType go nmap  <silent><C-b> :GoBuild<CR>
+au FileType go nmap  <silent><C-t> :GoTest<CR>
+au FileType go nmap  <silent><C-c> :GoCoverage<CR>
