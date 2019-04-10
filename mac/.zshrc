@@ -8,8 +8,8 @@ alias l='ls -ltr'
 alias la='ls -la'
 alias ll='ls -l'
 alias rezsh="exec $SHELL -l"
-alias ge='cd $(ghq root)/$(ghq list | peco)'
-alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
+alias ggpe='cd $GOPATH/src/$(ghq list --full-path | grep $GOPATH | cut -d "/" -f 6,7,8 | peco)'
+alias hgpe='hub browse $(ghq list | peco | cut -d "/" -f 3,4)'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
