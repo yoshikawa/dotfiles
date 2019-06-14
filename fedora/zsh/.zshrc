@@ -1,6 +1,10 @@
 autoload -U promptinit; promptinit
 # zplug
 source ~/.zplug/init.zsh
+kitty + complete setup zsh | source /dev/stdin
+
+autoload -Uz colors
+colors
 
 setopt auto_cd
 setopt auto_list
