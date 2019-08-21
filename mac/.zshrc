@@ -84,3 +84,6 @@ if [ -x "`which go`" ]; then
   export PATH=$PATH:$GOPATH/bin
 fi
 
+
+# added by travis gem
+[ -f /Users/yoshikawa/.travis/travis.sh ] && source /Users/yoshikawa/.travis/travis.sh

@@ -9,6 +9,10 @@ Plug 'Shougo/neomru.vim'
 Plug 'scrooloose/nerdtree'
 " Git
 Plug 'tpope/vim-fugitive'
+" C
+Plug 'kana/vim-operator-user'
+Plug 'rhysd/vim-clang-format' , {'for': 'c'}
+Plug 'justmao945/vim-clang', {'for': 'c'}
 " Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " JavaScript
@@ -77,6 +81,9 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+" C setting
+au FileType c,cpp nmap <Leader>f <Plug>(operator-clang-format)
 
 " golang setting
 au FileType go nmap <leader>r <Plug>(go-run)
