@@ -31,8 +31,8 @@ Plug 'flyinshadow/php_localvarcheck.vim', {'for': 'php'}
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
 Plug 'kana/vim-textobj-user', {'for': 'ruby'}
 Plug 'rhysd/vim-textobj-ruby', {'for': 'ruby'}
-Plug 'tpope/vim-rails', {'for': 'ruby'} 
-Plug 'tpope/vim-bundler', {'for': 'ruby'} 
+Plug 'tpope/vim-rails', {'for': 'ruby'}
+Plug 'tpope/vim-bundler', {'for': 'ruby'}
 " HTML5 plugin
 Plug 'othree/html5.vim'
 " Markdown

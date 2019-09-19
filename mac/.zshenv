@@ -6,8 +6,8 @@ export PATH="$HOME/.rbenv/shims:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="/usr/local/opt/binutils/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/binutils/lib"
-export CPPFLAGS="-I/usr/local/opt/binutils/include"
+export LDFLAGS="-L/usr/local/opt/binutils/lib:$LDFLAGS"
+export CPPFLAGS="-I/usr/local/opt/binutils/include:$CPPFLAGS"
 # OpenSSL
 export PATH=/usr/local/opt/openssl/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH

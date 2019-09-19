@@ -2,6 +2,7 @@ autoload -U promptinit; promptinit
 
 export ZPLUG_HOME=~/.zplug
 source $ZPLUG_HOME/init.zsh
+source ~/.zshenv
 
 # alias
 alias la='ls -la'
