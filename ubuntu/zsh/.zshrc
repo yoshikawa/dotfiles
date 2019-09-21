@@ -4,45 +4,8 @@ export ZPLUG_HOME=~/.zplug
 source $ZPLUG_HOME/init.zsh
 source ~/.zshenv
 
-# alias
-alias la='ls -la'
-alias ll='ls -l'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-alias a='alias'
-alias b='brew'
-alias c='pbcopy'
-alias d='docker'
-alias e='vim'
-alias f='find . -name'
-alias h='histroy'
-alias i='docker ps -a'
-alias j='jobs'
-alias k='kill -9'
-alias l='ls -ltr'
-alias m='make'
-alias n='npm'
-alias o='open'
-alias p='pwd'
-alias q='kubectl'
-#alias r=''
-alias s='ssh'
-alias t='tmux'
-alias u='cd ..'
-alias v='vim'
-#alias x=''
-alias y='yarn'
-alias z='zsh'
-
-alias allps='ps aux'
-alias rezsh="exec $SHELL -l"
-alias pwdc='pwd | tr -d "\n" | pbcopy'
-alias ggpe='cd $GOPATH/src/$(ghq list --full-path | grep $GOPATH | cut -d "/" -f 6,7,8 | peco)'
-alias hgpe='hub browse $(ghq list | peco | cut -d "/" -f 3,4)'
-
-alias -s gz='tar -xzvf'
+autoload -Uz colors
+colors
 
 setopt auto_cd
 setopt auto_list

@@ -4,13 +4,13 @@
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 sudo apt update
-sudo apt install google-chrome-stable
+sudo apt install -y google-chrome-stable
 
 # git
-sudo apt install git
+sudo apt install -y git
 
 # curl
-sudo apt install curl
+sudo apt install -y curl
 
 # install zplug
 curl -sL --proto-redir -all,https https://zplug.sh/installer | zsh
