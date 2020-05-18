@@ -9,4 +9,4 @@ services:
         tty: true
         working_dir: /dotfiles
         volumes:
-          - ./src:/dotfiles
+          - ./bin:/dotfiles
