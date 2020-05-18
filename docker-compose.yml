@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+    ubuntu:
+        container_name: ubuntu
+        build:
+          context: .docker
+          dockerfile: ubuntu.Dockerfile
+        tty: true
+        working_dir: /dotfiles
+        volumes:
+          - ./src:/dotfiles

@@ -1,0 +1,12 @@
+name: Ubuntu
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: ubuntu:latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: apt-get update && apt-get install -y git sudo
+      - run: sh -c "$(curl -L https://raw.githubusercontent.com/yoshikawa/dotfiles/master/bin/install.sh)"
