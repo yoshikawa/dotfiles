@@ -14,4 +14,4 @@ else
   exit 1
 fi
 
-sh $DOTPATH/src/bin/setup.sh
+sh $DOTPATH/bin/setup.sh
