@@ -28,12 +28,11 @@ brew install jq
 brew install git
 brew install ghq
 brew install github/gh/gh
-brew install ghq
 brew install hub
 brew install hexyl
 brew install starship
+brew install tmux
 brew install peco
 brew install procs
-brew install ripgrep
 brew install vim
 brew install zsh

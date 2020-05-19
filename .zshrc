@@ -63,6 +63,8 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zdharma/fast-syntax-highlighting
 zinit light chrissicool/zsh-256color
+zinit light paulirish/git-open
+zinit light reegnz/jq-zsh-plugin
 
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 

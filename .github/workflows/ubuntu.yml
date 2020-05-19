@@ -8,5 +8,5 @@ jobs:
     container: ubuntu:latest
     steps:
       - uses: actions/checkout@v2
-      - run: apt-get update && apt-get install -y git sudo
+      - run: apt-get update && apt-get install -y git sudo curl
       - run: sh -c "$(curl -L https://raw.githubusercontent.com/yoshikawa/dotfiles/master/bin/install.sh)"
