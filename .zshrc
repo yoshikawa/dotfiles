@@ -12,8 +12,13 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # alias
-alias la='ls -la'
-alias ll='ls -l'
+alias cat='bat'
+alias ls='exa'
+alias ll='ls -alF'
+alias la='ls -a'
+alias lt='ls -T'
+alias l='clear && ls -a1F'
+alias lsd='exa -D'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -43,6 +48,16 @@ alias v='vim'
 alias y='yarn'
 alias z='zsh'
 
+# editor
+alias edit='code'
+
+# fzf
+alias projects='cd $(ghq list -p | fzf)'
+
+# dotfiles
+alias dotfiles="cd ~/dotfiles"
+
+alias dc='docker-compose'
 alias allps='ps aux'
 alias rezsh="exec $SHELL -l"
 alias pwdc='pwd | tr -d "\n" | pbcopy'
@@ -56,9 +71,16 @@ export CLICOLOR=true
 export LSCOLORS='exfxcxdxbxGxDxabagacad'
 export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 
+# Brew
+eval "$(~/.linuxbrew/bin/brew shellenv)"
+
+# hub
+eval "$(hub alias -s)"
+
+# Starship
+eval "$(starship init zsh)"
+
 # plugins
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zdharma/fast-syntax-highlighting
