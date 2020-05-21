@@ -73,6 +73,7 @@ set novisualbell
 set ruler
 set title
 set showcmd
+set backspace=indent,eol,start
 
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
