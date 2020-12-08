@@ -9,10 +9,7 @@ elif type "yum" > /dev/null 2>&1; then
 fi
 
 if !(which brew); then
-  git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew
-  mkdir ~/.linuxbrew/bin
-  ln -sfv ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin
-  eval $(~/.linuxbrew/bin/brew shellenv)
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 brew install bat
