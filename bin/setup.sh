@@ -9,6 +9,9 @@ sh ${SCRIPT_DIR}/ln.sh
 # linuxbrew
 sh ${SCRIPT_DIR}/brew.sh
 
+# tpm(tmux plugin manager)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # zinit
 git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 
