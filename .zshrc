@@ -2,6 +2,16 @@ autoload -U promptinit; promptinit
 
 ZPLUGIN_HOME=$HOME/.zinit
 
+case ${OSTYPE} in
+  darwin*)
+    # Mac Setting
+    ;;
+  linux*)
+    # LinuxBrew
+    eval "$(~/.linuxbrew/bin/brew shellenv)"
+    ;;
+esac
+
 if [[ ! -f $ZPLUGIN_HOME/bin/zinit.zsh ]]; then
     git clone https://github.com/zdharma/zinit $ZPLUGIN_HOME/bin
 fi
@@ -69,18 +79,6 @@ alias -s gz='tar -xzvf'
 export CLICOLOR=true
 export LSCOLORS='exfxcxdxbxGxDxabagacad'
 export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
-
-if [ "$(uname)" == 'Darwin' ]; then
-  OS='Mac'
-elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-  OS='Linux'
-  # Brew
-  eval "$(~/.linuxbrew/bin/brew shellenv)"
-elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
-  OS='Cygwin'
-else
-  echo "Your platform ($(uname -a)) is not supported."
-fi
 
 # hub
 eval "$(hub alias -s)"

@@ -6,7 +6,7 @@ SCRIPT_DIR=$(cd $(dirname $0); pwd)
 # ln
 sh ${SCRIPT_DIR}/ln.sh
 
-# linuxbrew
+# homebrew
 sh ${SCRIPT_DIR}/brew.sh
 
 # tpm(tmux plugin manager)
