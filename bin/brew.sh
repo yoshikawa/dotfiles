@@ -17,12 +17,14 @@ brew_install_packages() {
   brew install htop
   brew install jq
   brew install lua
+  brew install neovim
   brew install node
   brew install starship
   brew install tmux
   brew install tree
   brew install peco
   brew install procs
+  brew install python
   brew install vim
   brew install wget
   brew install zsh
