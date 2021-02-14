@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 DOTPATH=~/dotfiles
 GITHUB_URL=https://github.com/yoshikawa/dotfiles

@@ -1,21 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 brew_install_packages() {
   brew install bat
   brew install bash
-  brew install htop
   brew install ctop
   brew install curl
   brew install exa
   brew install direnv
   brew install fd
   brew install fzf
-  brew install jq
   brew install git
   brew install go
   brew install ghq
-  brew install github/gh/gh
+  brew install gh
   brew install hub
   brew install hexyl
+  brew install htop
+  brew install jq
+  brew install lua
   brew install node
   brew install starship
   brew install tmux
@@ -23,26 +24,53 @@ brew_install_packages() {
   brew install peco
   brew install procs
   brew install vim
+  brew install wget
   brew install zsh
 }
 
-if type "apt" > /dev/null 2>&1; then
+OS_NAME="$(uname | awk '{print tolower($0)}')"
+OS_FULL="$(uname -a)"
+OS_TYPE=
+
+if [ "${OS_NAME}" == "linux" ]; then
+    if [ $(echo "${OS_FULL}" | grep -c "amzn1") -gt 0 ]; then
+        OS_TYPE="yum"
+    elif [ $(echo "${OS_FULL}" | grep -c "amzn2") -gt 0 ]; then
+        OS_TYPE="yum"
+    elif [ $(echo "${OS_FULL}" | grep -c "el6") -gt 0 ]; then
+        OS_TYPE="yum"
+    elif [ $(echo "${OS_FULL}" | grep -c "el7") -gt 0 ]; then
+        OS_TYPE="yum"
+    elif [ $(echo "${OS_FULL}" | grep -c "Ubuntu") -gt 0 ]; then
+        OS_TYPE="apt"
+    elif [ $(echo "${OS_FULL}" | grep -c "coreos") -gt 0 ]; then
+        OS_TYPE="apt"
+    fi
+elif [ "${OS_NAME}" == "darwin" ]; then
+    OS_TYPE="brew"
+fi
+
+if [ "${OS_TYPE}" == "" ]; then
+    _error "Not supported OS. [${OS_NAME}]"
+fi
+
+if [ "${OS_TYPE}" == "apt" ]; then
   sudo apt update
   sudo apt install -y build-essential curl file git
-elif type "yum" > /dev/null 2>&1; then
+elif [ "${OS_TYPE}" == "yum" ]; then
   sudo yum groupinstall -y 'Development Tools'
   sudo yum install -y curl file git
   sudo yum install -y libxcrypt-compat
 fi
 
-if [ `uname` = "Darwin" ]; then
+if [ "${OS_NAME}" == "darwin" ]; then
   if !(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew_install_packages
   fi
   brew_install_packages
   OS='Mac'
-elif [ `uname` = "Linux" ]; then
+elif [ "${OS_NAME}" == "linux" ]; then
   if !(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     eval $(~/.linuxbrew/bin/brew shellenv)
