@@ -9,7 +9,7 @@ ZINIT_GITHUB_URL=https://github.com/zdharma/zinit
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 # homebrew
-sh ${SCRIPT_DIR}/brew.sh
+${SCRIPT_DIR}/brew.sh
 
 # tpm(tmux plugin manager)
 if [ -d $TPMTPATH ]; then
@@ -26,7 +26,7 @@ else
 fi
 
 # symbolic link
-sh ${SCRIPT_DIR}/ln.sh
+${SCRIPT_DIR}/ln.sh
 
 # vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

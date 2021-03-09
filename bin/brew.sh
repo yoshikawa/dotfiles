@@ -73,7 +73,7 @@ if [ "${OS_NAME}" == "darwin" ]; then
 elif [ "${OS_NAME}" == "linux" ]; then
   if !(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval $(~/.linuxbrew/bin/brew shellenv)
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     brew_install_packages
   fi
   brew_install_packages
