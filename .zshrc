@@ -37,7 +37,7 @@ alias b='brew'
 alias c='pbcopy'
 alias d='docker'
 alias e='vim'
-alias f='find . -name'
+alias f='fd'
 alias h='histroy'
 alias i='docker ps -a'
 alias j='jobs'
@@ -59,13 +59,9 @@ alias z='zsh'
 
 # editor
 alias edit='code'
-
 # fzf
 alias projects='cd $(ghq list -p | fzf)'
-
-# dotfiles
 alias dotfiles="cd ~/dotfiles"
-
 alias dc='docker-compose'
 alias allps='ps aux'
 alias rezsh="exec $SHELL -l"
