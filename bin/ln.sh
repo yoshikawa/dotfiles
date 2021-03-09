@@ -1,6 +1,9 @@
 #!/bin/bash
-DOTFILES="$(cd $(dirname $0); pwd)/.."
+DOTPATH=~/.dotfiles
 
-for file in `ls -1AF $DOTFILES | grep -v / | grep '^\.'`; do
-  ln -sfv $(echo $DOTFILES/$file | xargs readlink -f) ~/${file}
+for f in .??*
+do
+    [ "$f" = ".git" ] && continue
+
+    ln -snfv "$DOTPATH/$f" "$HOME"/"$f"
 done
