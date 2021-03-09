@@ -56,21 +56,11 @@ if [ "${OS_TYPE}" == "" ]; then
     _error "Not supported OS. [${OS_NAME}]"
 fi
 
-if [ "${OS_TYPE}" == "apt" ]; then
-  sudo apt update
-  sudo apt install -y build-essential curl file git
-elif [ "${OS_TYPE}" == "yum" ]; then
-  sudo yum groupinstall -y 'Development Tools'
-  sudo yum install -y curl file git
-  sudo yum install -y libxcrypt-compat
-fi
-
 if [ "${OS_NAME}" == "darwin" ]; then
   if !(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew_install_packages
   fi
-  brew_install_packages
   OS='Mac'
 elif [ "${OS_NAME}" == "linux" ]; then
   if !(which brew); then
@@ -78,7 +68,6 @@ elif [ "${OS_NAME}" == "linux" ]; then
     eval $(~/.linuxbrew/bin/brew shellenv)
     brew_install_packages
   fi
-  brew_install_packages
   OS='Linux'
 elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
   OS='Cygwin'
