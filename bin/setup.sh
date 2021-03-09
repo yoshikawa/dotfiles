@@ -3,7 +3,7 @@
 TPMTPATH=~/.tmux/plugins/tpm
 TPM_GITHUB_URL=https://github.com/tmux-plugins/tpm
 ZINITPATH=~/.zinit/bin
-ZINIT_GITHUB_URL=https://github.com/zdharma/zinit.git
+ZINIT_GITHUB_URL=https://github.com/zdharma/zinit
 
 # env
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
