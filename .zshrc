@@ -8,7 +8,7 @@ case ${OSTYPE} in
     ;;
   linux*)
     # LinuxBrew
-    eval "$(~/.linuxbrew/bin/brew shellenv)"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     ;;
 esac
 
