@@ -11,7 +11,7 @@ UBUNTU=$(EXEC) ubuntu
 all: setup
 
 setup:
-	bash -c "$$(curl -L https://raw.githubusercontent.com/yoshikawa/dotfiles/master/bin/install.sh)"
+	bash -c "$$(curl -L https://raw.githubusercontent.com/yoshikawa/dotfiles/main/bin/install.sh)"
 
 docker/build: ## docker build
 	$(BUILD)
