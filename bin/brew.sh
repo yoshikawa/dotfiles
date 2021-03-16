@@ -1,40 +1,8 @@
 #!/bin/bash
 
-brew_install_packages() {
-  brew install bat
-  brew install bash
-  brew install ctop
-  brew install curl
-  brew install exa
-  brew install direnv
-  brew install fd
-  brew install fzf
-  brew install git
-  brew install go
-  brew install ghq
-  brew install gh
-  brew install hub
-  brew install hexyl
-  brew install htop
-  brew install jq
-  brew install lua
-  brew install neovim
-  brew install node
-  brew install starship
-  brew install tmux
-  brew install tree
-  brew install peco
-  brew install procs
-  brew install python
-  brew install vim
-  brew install wget
-  brew install zsh
-}
-
 OS_NAME="$(uname | awk '{print tolower($0)}')"
 OS_FULL="$(uname -a)"
 OS_TYPE=
-
 # env
 DOTFILES="$(cd $(dirname $0); pwd)/.."
 
@@ -74,9 +42,11 @@ elif [ "${OS_NAME}" == "linux" ]; then
   if !(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-    brew_install_packages
+    cd $DOTFILES
+    brew bundle
   fi
-  brew_install_packages
+  cd $DOTFILES
+  brew bundle
   OS='Linux'
 elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
   OS='Cygwin'

@@ -49,3 +49,11 @@ else
 fi
 
 sh $DOTPATH/bin/setup.sh
+
+# vscode extension install
+if type "code" > /dev/null 2>&1; then
+  sh $DOTPATH/bin/vscode.sh
+else
+  echo "Install vscode!"
+  exit 1
+fi
