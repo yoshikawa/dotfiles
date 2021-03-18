@@ -2,7 +2,7 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-'Shougo/denite.nvim'
+repo = 'Shougo/denite.nvim'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
@@ -47,3 +47,6 @@ repo = 'junegunn/fzf.vim'
 
 [[plugins]]
 repo = "nathanaelkane/vim-indent-guides"
+
+[[plugins]]
+repo = "thinca/vim-quickrun"
