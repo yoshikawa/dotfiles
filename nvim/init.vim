@@ -1,3 +1,17 @@
+set number
+set t_Co=256
+set encoding=utf-8
+scriptencoding utf-8
+set autoindent
+set smartindent
+set ttyfast
+set vb t_vb=
+set novisualbell
+set ruler
+set title
+set showcmd
+set backspace=indent,eol,start
+
 " reset augroup
 augroup MyAutoCmd
     autocmd!
@@ -18,3 +32,4 @@ function! s:load(file) abort
 endfunction
 
 call s:load('plugins')
+call deoplete#enable()

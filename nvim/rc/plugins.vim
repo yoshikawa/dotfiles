@@ -24,8 +24,8 @@ let s:toml_dir = expand('$CONFIG/nvim/dein')
 
 call dein#load_toml(s:toml_dir . '/plugins.toml', {'lazy': 0})
 call dein#load_toml(s:toml_dir . '/lazy.toml', {'lazy': 1})
-if has('python3')
-    call dein#load_toml(s:toml_dir . '/python.toml', {'lazy': 1})
+if has('go')
+    call dein#load_toml(s:toml_dir . '/go.toml', {'lazy': 1})
 endif
 
 call dein#end()
@@ -34,4 +34,4 @@ call dein#save_state()
 if has('vim_starting') && dein#check_install()
     call dein#install()
 endif
-" }}}
+

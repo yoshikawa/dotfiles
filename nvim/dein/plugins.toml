@@ -1,15 +1,49 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+[[plugins]]
+'Shougo/denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+    nnoremap <silent><C-t> :NERDTreeToggle<CR>
+'''
+
+# colorscheme
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+hook_add = '''
+    syntax enable
+    set background=dark
+    colorscheme hybrid
+'''
+
+# status line
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
-    let g:lightline = {'colorscheme': 'wombat'}
+    set noshowmode
+    let g:lightline = {
+    \ 'colorscheme': 'wombat'
+    \ }
 '''
 
 # Toml
 [[plugins]]
 repo  = 'cespare/vim-toml'
 
-# Golang
 [[plugins]]
-repo = 'fatih/vim-go'
+repo = 'junegunn/fzf.vim'
+
+[[plugins]]
+repo = "nathanaelkane/vim-indent-guides"

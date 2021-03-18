@@ -59,6 +59,9 @@ alias z='zsh'
 
 # editor
 alias edit='code'
+# NeoVim
+alias vim=nvim
+
 # fzf
 alias projects='cd $(ghq list -p | fzf)'
 alias dotfiles="cd ~/dotfiles"
@@ -66,8 +69,8 @@ alias dc='docker-compose'
 alias allps='ps aux'
 alias rezsh="exec $SHELL -l"
 alias pwdc='pwd | tr -d "\n" | pbcopy'
-alias ggpe='cd $GOPATH/src/$(ghq list --full-path | grep $GOPATH | cut -d "/" -f 6,7,8 | peco)'
-alias hgpe='hub browse $(ghq list | peco | cut -d "/" -f 3,4)'
+alias gopr='cd $GOPATH/src/$(ghq list --full-path | grep $GOPATH | cut -d "/" -f 6,7,8 | peco)'
+alias gopn='hub browse $(ghq list | peco | cut -d "/" -f 2,3,4)'
 
 alias -s gz='tar -xzvf'
 
