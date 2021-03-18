@@ -2,7 +2,7 @@
 
 # language
 export LANG=ja_JP.UTF-8
-
+export XDG_CONFIG_HOME=~/.config
 # editor
 export EDITOR=vim
 export VISUAL=vim

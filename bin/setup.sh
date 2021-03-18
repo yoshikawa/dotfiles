@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DOTPATH=~/dotfiles
+XDG_CONFIG_HOME=~/.config
 TPMTPATH=~/.tmux/plugins/tpm
 TPM_GITHUB_URL=https://github.com/tmux-plugins/tpm
 ZINITPATH=~/.zinit/bin
@@ -9,7 +11,7 @@ ZINIT_GITHUB_URL=https://github.com/zdharma/zinit
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 # homebrew
-${SCRIPT_DIR}/brew.sh
+# ${SCRIPT_DIR}/brew.sh
 
 # tpm(tmux plugin manager)
 if [ -d $TPMTPATH ]; then
@@ -28,5 +30,5 @@ fi
 # symbolic link
 ${SCRIPT_DIR}/ln.sh
 
-# vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# dein.vim
+cp -r ${DOTPATH}/nvim $XDG_CONFIG_HOME

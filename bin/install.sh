@@ -52,7 +52,7 @@ sh $DOTPATH/bin/setup.sh
 
 # vscode extension install
 if type "code" > /dev/null 2>&1; then
-  sh $DOTPATH/bin/vscode.sh
+  sh $DOTPATH/bin/vscode/vscode.sh
 else
   echo "Install vscode!"
   exit 1
