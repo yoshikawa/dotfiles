@@ -1,0 +1,7 @@
+[[plugins]]
+repo = 'mbbill/undotree'
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+hook_add = '''
+    nmap s <Plug>(easymotion-overwin-f2)
+'''

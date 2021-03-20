@@ -32,4 +32,3 @@ function! s:load(file) abort
 endfunction
 
 call s:load('plugins')
-call deoplete#enable()

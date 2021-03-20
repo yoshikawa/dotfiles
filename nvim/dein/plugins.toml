@@ -2,22 +2,6 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-hook_add = '''
-   let g:deoplete#enable_at_startup = 1
-   let g:deoplete#enable_ignore_case = 1
-'''
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-
-[[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
     nnoremap <silent><C-t> :NERDTreeToggle<CR>
@@ -41,10 +25,6 @@ hook_add = '''
     \ 'colorscheme': 'wombat'
     \ }
 '''
-
-# Toml
-[[plugins]]
-repo  = 'cespare/vim-toml'
 
 ### fzf.vim
 [[plugins]]
@@ -85,14 +65,13 @@ hook_add = '''
     tnoremap <silent> <C-w> <C-\><C-n><C-w>
 '''
 
-# lsp
+# snippets
 [[plugins]]
-repo = 'prabirshrestha/vim-lsp'
+repo = 'SirVer/ultisnips'
+hook_add = '''
+    let g:UltiSnipsExpandTrigger='<c-j>'
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+'''
 [[plugins]]
-repo = 'mattn/vim-lsp-settings'
-[[plugins]]
-repo = 'mattn/vim-lsp-icons'
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip'
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip-integ'
+repo = 'honza/vim-snippets'
