@@ -3,6 +3,10 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+hook_add = '''
+   let g:deoplete#enable_at_startup = 1
+   let g:deoplete#enable_ignore_case = 1
+'''
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
@@ -42,11 +46,53 @@ hook_add = '''
 [[plugins]]
 repo  = 'cespare/vim-toml'
 
+### fzf.vim
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
 [[plugins]]
 repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+hook_add = '''
+    nnoremap <silent><C-p> :History<CR>
+    command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
+      \   fzf#vim#with_preview({'options': '--exact --reverse'}, 'right:50%:wrap'))
+'''
 
 [[plugins]]
-repo = "nathanaelkane/vim-indent-guides"
+repo = 'Yggdroot/indentLine'
 
 [[plugins]]
-repo = "thinca/vim-quickrun"
+repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
+[[plugins]]
+repo = 'tmux-plugins/vim-tmux'
+
+[[plugins]]
+repo = 'tpope/vim-dispatch'
+
+[[plugins]]
+repo = 'kassio/neoterm'
+hook_add = '''
+    let g:neoterm_default_mod='belowright'
+    let g:neoterm_size=10
+    let g:neoterm_autoscroll=1
+    tnoremap <silent> <C-w> <C-\><C-n><C-w>
+'''
+
+# lsp
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+[[plugins]]
+repo = 'mattn/vim-lsp-icons'
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'

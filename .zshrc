@@ -100,3 +100,6 @@ if [ -x "`which go`" ]; then
   export GOPATH=$HOME/go
   export PATH=$PATH:$GOPATH/bin
 fi
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
