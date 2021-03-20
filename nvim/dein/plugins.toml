@@ -26,6 +26,9 @@ hook_add = '''
     \ }
 '''
 
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
 ### fzf.vim
 [[plugins]]
 repo = 'junegunn/fzf'
