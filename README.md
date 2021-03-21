@@ -1,5 +1,8 @@
 # dotfiles
 
+![GitHub Repo stars](https://img.shields.io/github/stars/yoshikawa/dotfiles?style=social)
+![GitHub](https://img.shields.io/github/license/yoshikawa/dotfiles?style=flat-square)
+
 This is my personal collection of configuration files.
 
 ## Usage
