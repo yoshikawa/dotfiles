@@ -66,6 +66,7 @@ hook_add = '''
     let g:neoterm_size=10
     let g:neoterm_autoscroll=1
     tnoremap <silent> <C-w> <C-\><C-n><C-w>
+    nnoremap <silent><C-t><C-t> :Ttoggle<CR>
 '''
 
 # snippets
