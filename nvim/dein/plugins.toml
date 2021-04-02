@@ -4,7 +4,7 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
-    nnoremap <silent><C-t> :NERDTreeToggle<CR>
+    nnoremap <silent><C-e> :NERDTreeToggle<CR>
 '''
 
 # colorscheme
