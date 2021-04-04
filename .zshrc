@@ -43,3 +43,16 @@ zinit light 'b4b4r07/enhancd'
 
 zinit load 'junegunn/fzf-bin'
 zinit load 'zdharma/history-search-multi-word'
+
+function peco-src () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-src
+bindkey '^]' peco-src
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
