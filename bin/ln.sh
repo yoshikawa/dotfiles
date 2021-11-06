@@ -1,6 +1,6 @@
 #!/bin/bash -e
 DOTPATH=~/dotfiles
-XDG_CONFIG_HOME=~/.config
+CONFIG_HOME=~/.config
 IGNORE_PATTERN="^\.(git|docker)"
 
 cd $DOTPATH
@@ -12,4 +12,9 @@ for f in .??*; do
 done
 
 # NeoVim
-ln -sfv ${DOTPATH}/nvim $XDG_CONFIG_HOME
+if [ -d $CONFIG_HOME ]; then
+    ln -sfv ${DOTPATH}/nvim $CONFIG_HOME
+else
+    mkdir $CONFIG_HOME
+    ln -sfv ${DOTPATH}/nvim $CONFIG_HOME
+fi

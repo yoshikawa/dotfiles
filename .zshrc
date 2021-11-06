@@ -1,10 +1,10 @@
 autoload -Uz promptinit compinit;
 promptinit;
-compinit;
+compinit -u;
 
 ZPLUGIN_HOME=$HOME/.zinit
 if [[ ! -f $ZPLUGIN_HOME/bin/zinit.zsh ]]; then
-    git clone https://github.com/zdharma/zinit $ZPLUGIN_HOME/bin
+    git clone https://github.com/zdharma-continuum/zinit $ZPLUGIN_HOME/bin
 fi
 source $ZPLUGIN_HOME/bin/zinit.zsh
 autoload -Uz _zinit
@@ -13,6 +13,7 @@ autoload -Uz _zinit
 case ${OSTYPE} in
   darwin*)
     # Mac Setting
+    PATH="/usr/local/sbin:$PATH"
     ;;
   linux*)
     # LinuxBrew
