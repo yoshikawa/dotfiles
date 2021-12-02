@@ -28,7 +28,9 @@ if [ "${OS_TYPE}" == "" ]; then
     _error "Not supported OS. [${OS_NAME}]"
 fi
 
-if [ "${OS_TYPE}" == "apt" ]; then
+if [ "${OS_TYPE}" == "brew" ]; then
+  xcode-select --install
+elif [ "${OS_TYPE}" == "apt" ]; then
   sudo apt update && sudo apt upgrade -y
   sudo apt install -y build-essential curl file git
 elif [ "${OS_TYPE}" == "yum" ]; then
