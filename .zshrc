@@ -34,7 +34,7 @@ zinit snippet 'OMZ::lib/compfix.zsh'
 
 zinit light 'zsh-users/zsh-autosuggestions'
 zinit light 'zsh-users/zsh-completions'
-zinit light 'zdharma/fast-syntax-highlighting'
+zinit light 'zdharma-continuum/fast-syntax-highlighting'
 zinit light 'chrissicool/zsh-256color'
 zinit light 'paulirish/git-open'
 zinit light 'reegnz/jq-zsh-plugin'
@@ -43,7 +43,7 @@ zinit light 'mollifier/anyframe'
 zinit light 'b4b4r07/enhancd'
 
 zinit load 'junegunn/fzf-bin'
-zinit load 'zdharma/history-search-multi-word'
+zinit load 'zdharma-continuum/history-search-multi-word'
 
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
