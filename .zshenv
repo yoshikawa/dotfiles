@@ -14,7 +14,7 @@ export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 # Go Lang
-if [ -x "`which go`" ]; then
+if [ -x "$(which go)" ]; then
   export GOPATH=$HOME/go
   export PATH=$PATH:$GOPATH/bin
 fi
