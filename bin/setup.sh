@@ -2,11 +2,14 @@
 
 TPM_PATH=~/.tmux/plugins/tpm
 TPM_GITHUB_URL=https://github.com/tmux-plugins/tpm
-ZINIT_PATH=~/.zinit/bin
-ZINIT_GITHUB_URL=https://github.com/zdharma-continuum/zinit
+ZI_PATH=~/.zi/bin
+ZI_GITHUB_URL=https://github.com/z-shell/zi
 
 # env
-SCRIPT_DIR=$(cd $(dirname $0); pwd)
+SCRIPT_DIR=$(
+    cd $(dirname $0)
+    pwd
+)
 
 # homebrew
 ${SCRIPT_DIR}/brew.sh
@@ -22,7 +25,8 @@ fi
 if [ -d $ZINIT_PATH ]; then
     cd $ZINIT_PATH && git pull
 else
-    git clone ${ZINIT_GITHUB_URL}.git $ZINIT_PATH
+    zi_home="${HOME}/.zi" && mkdir -p $zi_home
+    git clone ${ZI_GITHUB_URL} "${zi_home}/bin"
 fi
 
 # symbolic link

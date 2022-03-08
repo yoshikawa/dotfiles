@@ -1,14 +1,7 @@
-autoload -Uz promptinit compinit;
-promptinit;
-compinit -u;
-
-ZPLUGIN_HOME=$HOME/.zinit
-if [[ ! -f $ZPLUGIN_HOME/bin/zinit.zsh ]]; then
-    git clone https://github.com/zdharma-continuum/zinit $ZPLUGIN_HOME/bin
-fi
-source $ZPLUGIN_HOME/bin/zinit.zsh
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+zi_home="${HOME}/.zi"
+source "${zi_home}/bin/zi.zsh"
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 
 case ${OSTYPE} in
   darwin*)
@@ -27,23 +20,23 @@ eval "$(hub alias -s)"
 eval "$(starship init zsh)"
 
 # plugins
-zinit snippet 'OMZ::plugins/git/git.plugin.zsh'
-zinit snippet 'OMZ::lib/clipboard.zsh'
-zinit snippet 'OMZ::lib/completion.zsh'
-zinit snippet 'OMZ::lib/compfix.zsh'
+zi snippet 'OMZ::plugins/git/git.plugin.zsh'
+zi snippet 'OMZ::lib/clipboard.zsh'
+zi snippet 'OMZ::lib/completion.zsh'
+zi snippet 'OMZ::lib/compfix.zsh'
 
-zinit light 'zsh-users/zsh-autosuggestions'
-zinit light 'zsh-users/zsh-completions'
-zinit light 'zdharma-continuum/fast-syntax-highlighting'
-zinit light 'chrissicool/zsh-256color'
-zinit light 'paulirish/git-open'
-zinit light 'reegnz/jq-zsh-plugin'
-zinit light 'b4b4r07/emoji-cli'
-zinit light 'mollifier/anyframe'
-zinit light 'b4b4r07/enhancd'
+zi light 'zsh-users/zsh-autosuggestions'
+zi light 'zsh-users/zsh-completions'
+zi light 'zdharma-continuum/fast-syntax-highlighting'
+zi light 'chrissicool/zsh-256color'
+zi light 'paulirish/git-open'
+zi light 'reegnz/jq-zsh-plugin'
+zi light 'b4b4r07/emoji-cli'
+zi light 'mollifier/anyframe'
+zi light 'b4b4r07/enhancd'
 
-zinit load 'junegunn/fzf-bin'
-zinit load 'zdharma-continuum/history-search-multi-word'
+zi load 'junegunn/fzf-bin'
+zi load 'zdharma-continuum/history-search-multi-word'
 
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
