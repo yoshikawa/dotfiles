@@ -16,14 +16,20 @@ ${SCRIPT_DIR}/brew.sh
 
 # tpm(tmux plugin manager)
 if [ -d $TPM_TPATH ]; then
-    cd $TPM_TPATH && git pull
+    cd $TPM_TPATH
+    if git pull; then
+        exit 0
+    fi
 else
     git clone ${TPM_GITHUB_URL}.git $TPM_PATH
 fi
 
 # zinit
 if [ -d $ZINIT_PATH ]; then
-    cd $ZINIT_PATH && git pull
+    cd $ZINIT_PATH
+    if git pull; then
+        exit 0
+    fi
 else
     zi_home="${HOME}/.zi" && mkdir -p $zi_home
     git clone ${ZI_GITHUB_URL} "${zi_home}/bin"

@@ -34,6 +34,11 @@ fi
 if [ "${OS_NAME}" == "darwin" ]; then
   if !(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    if [[ "$(uname -m)" == arm64 ]]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+      eval "$(/usr/local/bin/brew shellenv)"
+    fi
     cd $DOTFILES
     brew bundle
   fi
