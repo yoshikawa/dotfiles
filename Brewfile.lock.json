@@ -1732,6 +1732,14 @@
         "Xcode": "13.3.1",
         "macOS": "12.3.1"
       }
+    },
+    "linux": {
+      "Ubuntu 22.04 LTS (jammy)": {
+        "HOMEBREW_VERSION": "3.4.8",
+        "HOMEBREW_PREFIX": "/home/linuxbrew/.linuxbrew",
+        "Homebrew/linuxbrew-core": "e35b3e526ead74279742fa352f4ec97c1697f8fd",
+        "GCC": "11.2.0"
+      }
     }
   }
 }
