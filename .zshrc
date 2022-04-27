@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+. "$HOME/.fig/shell/zshrc.pre.zsh"
 zi_home="${HOME}/.zi"
 source "${zi_home}/bin/zi.zsh"
 autoload -Uz _zi
@@ -55,3 +57,6 @@ zle -N peco-src
 bindkey '^]' peco-src
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Fig post block. Keep at the bottom of this file.
+[ -f ~/.fig/shell/zshrc.post.zsh ] && . "$HOME/.fig/shell/zshrc.post.zsh"
