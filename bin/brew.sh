@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -e
+#!/bin/bash -eu
 
 OS_NAME="$(uname | awk '{print tolower($0)}')"
 OS_FULL="$(uname -a)"
@@ -30,8 +28,7 @@ elif [ "${OS_NAME}" == "darwin" ]; then
 fi
 
 if [ "${OS_TYPE}" == "" ]; then
-  echo "Not supported OS. [${OS_NAME}]"
-  exit 0
+  echo -e "Not supported OS. [${OS_NAME}]"
 fi
 
 if [ "${OS_NAME}" == "darwin" ]; then
@@ -50,10 +47,18 @@ if [ "${OS_NAME}" == "darwin" ]; then
   OS='Mac'
 elif [ "${OS_NAME}" == "linux" ]; then
   if !(which brew); then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-    cd $DOTFILES
-    brew bundle
+    if [[ "$(uname -r)" == *microsoft* ]]; then
+      echo 'WSL installing Homebrew'
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+      cd $DOTFILES
+      brew bundle
+    else
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+      cd $DOTFILES
+      brew bundle
+    fi
   fi
   cd $DOTFILES
   brew bundle
