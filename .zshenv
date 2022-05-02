@@ -12,7 +12,10 @@ export CLICOLOR=true
 export LSCOLORS='exfxcxdxbxGxDxabagacad'
 export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 # Rust
-export PATH="$HOME/.cargo/bin:$PATH"
+if [[ -f $HOME/.cargo/env ]]; then
+  source $HOME/.cargo/env
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
 # Go Lang
 if [ -x "$(which go)" ]; then
   export GOPATH=$HOME/go
@@ -80,4 +83,4 @@ setopt inc_append_history
 setopt share_history
 setopt hist_no_store
 setopt hist_expand
-. "$HOME/.cargo/env"
+

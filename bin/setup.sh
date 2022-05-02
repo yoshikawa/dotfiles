@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 TPM_PATH=~/.tmux/plugins/tpm
-TPM_GITHUB_URL=https://github.com/tmux-plugins/tpm
+TPM_GITHUB_URL=https://github.com/tmux-plugins/tpm.git
 ZI_PATH=~/.zi/bin
-ZI_GITHUB_URL=https://github.com/z-shell/zi
+ZI_GITHUB_URL=https://github.com/z-shell/zi.git
 
 # env
 SCRIPT_DIR=$(
@@ -15,24 +15,19 @@ SCRIPT_DIR=$(
 ${SCRIPT_DIR}/brew.sh
 
 # tpm(tmux plugin manager)
-if [ -d $TPM_TPATH ]; then
-    cd $TPM_TPATH
-    if git pull; then
-        exit 0
-    fi
+if [ ! -d $TPM_PATH ]; then
+    mkdir -p $TPM_PATH
+    git clone $TPM_GITHUB_URL $TPM_PATH
 else
-    git clone ${TPM_GITHUB_URL}.git $TPM_PATH
+    cd $TPM_PATH && git pull
 fi
 
 # zinit
-if [ -d $ZINIT_PATH ]; then
-    cd $ZINIT_PATH
-    if git pull; then
-        exit 0
-    fi
+if [ ! -d $ZI_PATH ]; then
+    mkdir -p $ZI_PATH
+    git clone $ZI_GITHUB_URL $ZI_PATH
 else
-    zi_home="${HOME}/.zi" && mkdir -p $zi_home
-    git clone ${ZI_GITHUB_URL} "${zi_home}/bin"
+    cd $ZI_PATH && git pull
 fi
 
 # symbolic link

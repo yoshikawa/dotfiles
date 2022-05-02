@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 OS_NAME="$(uname | awk '{print tolower($0)}')"
 OS_FULL="$(uname -a)"
 OS_TYPE=
@@ -28,7 +30,8 @@ elif [ "${OS_NAME}" == "darwin" ]; then
 fi
 
 if [ "${OS_TYPE}" == "" ]; then
-  _error "Not supported OS. [${OS_NAME}]"
+  echo "Not supported OS. [${OS_NAME}]"
+  exit 0
 fi
 
 if [ "${OS_NAME}" == "darwin" ]; then
