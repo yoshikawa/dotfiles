@@ -1,6 +1,7 @@
 #!/bin/bash -e
 DOTPATH=~/dotfiles
 CONFIG_HOME=~/.config
+ZSH_HOME=~/.zsh
 IGNORE_PATTERN="^\.(git|docker)"
 
 cd $DOTPATH
@@ -10,6 +11,14 @@ for f in .??*; do
 
     ln -snfv "$DOTPATH/$f" "$HOME"/"$f"
 done
+
+# ZSH
+if [ -d $ZSH_HOME ]; then
+    ln -sfv ${DOTPATH}/zsh/* $ZSH_HOME
+else
+    mkdir $ZSH_HOME
+    ln -sfv ${DOTPATH}/zsh/* $ZSH_HOME
+fi
 
 # NeoVim
 if [ -d $CONFIG_HOME ]; then

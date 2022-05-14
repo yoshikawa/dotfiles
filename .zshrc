@@ -1,3 +1,10 @@
+if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
+  print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (z-shell/zi)…%f"
+  command mkdir -p $HOME/.zi
+  command git clone https://github.com/z-shell/zi.git $HOME/.zi/bin && \
+      print -P "%F{33}▓▒░ %F{34}Installation successful.%F" || \
+      print -P "%F{160}▓▒░ The clone has failed.%F"
+fi
 zi_home="${HOME}/.zi"
 source "${zi_home}/bin/zi.zsh"
 autoload -Uz _zi
@@ -19,43 +26,17 @@ case ${OSTYPE} in
     ;;
 esac
 
+if [ -d ~/.zsh ]; then
+  source ~/.zsh/plugins.zsh
+  source ~/.zsh/config.zsh
+  source ~/.zsh/alias.zsh
+  source ~/.zsh/functions.zsh
+else
+  print "ZSH CONFIGS NOT FOUND: ~/.zsh"
+fi
+
 # hub
-eval "$(hub alias -s)"
+# eval "$(hub alias -s)"
 # Starship
-eval "$(starship init zsh)"
-
-# plugins
-zi snippet 'OMZ::plugins/git/git.plugin.zsh'
-zi snippet 'OMZ::lib/clipboard.zsh'
-zi snippet 'OMZ::lib/completion.zsh'
-zi snippet 'OMZ::lib/compfix.zsh'
-
-zi light 'zsh-users/zsh-autosuggestions'
-zi light 'zsh-users/zsh-completions'
-zi light 'zdharma-continuum/fast-syntax-highlighting'
-zi light 'chrissicool/zsh-256color'
-zi light 'paulirish/git-open'
-zi light 'reegnz/jq-zsh-plugin'
-zi light 'b4b4r07/emoji-cli'
-zi light 'mollifier/anyframe'
-zi light 'b4b4r07/enhancd'
-
-zi load 'junegunn/fzf-bin'
-zi load 'zdharma-continuum/history-search-multi-word'
-
-function peco-src () {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
-  fi
-  zle clear-screen
-}
-zle -N peco-src
-bindkey '^]' peco-src
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Fig post block. Keep at the bottom of this file.
-[ -f ~/.fig/shell/zshrc.post.zsh ] && source $HOME/.fig/shell/zshrc.post.zsh
-
+# eval "$(starship init zsh)"
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

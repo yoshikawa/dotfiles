@@ -19,6 +19,11 @@ if [ "${OS_NAME}" == "linux" ]; then
     OS_TYPE="apt"
   elif [ $(echo "${OS_FULL}" | grep -c "coreos") -gt 0 ]; then
     OS_TYPE="apt"
+  elif [ $(echo "${OS_FULL}" | grep -c "microsoft-standard-WSL") -gt 0 ]; then
+    # WSL
+    if [ $(cat /etc/os-release | grep -c "Ubuntu") -gt 0 ]; then
+      OS_TYPE="apt"
+    fi
   fi
 elif [ "${OS_NAME}" == "darwin" ]; then
   OS_TYPE="brew"
@@ -51,11 +56,3 @@ else
 fi
 
 sh $DOTPATH/bin/setup.sh
-
-# vscode extension install
-if type "code" >/dev/null 2>&1; then
-  sh $DOTPATH/bin/vscode/vscode.sh
-else
-  echo "Install vscode!"
-  exit 1
-fi
