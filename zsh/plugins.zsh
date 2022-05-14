@@ -36,7 +36,7 @@ zi light dandavison/delta
 # hub: https://github.com/github/hub
 zi ice as"program" from"gh-r" mv"hub-*/bin/hub -> hub" atclone'./hub alias -s > zhook.zsh' atpull'%atclone'
 zi light github/hub
-zi ice silent as"completion" mv'hub.zsh_completion -> _hub' 
+zi ice silent as"completion" mv'hub.zsh_completion -> _hub'
 zi snippet https://github.com/github/hub/raw/master/etc/hub.zsh_completion
 # Syntax Highlighting
 zi light z-shell/F-Sy-H

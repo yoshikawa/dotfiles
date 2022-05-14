@@ -8,7 +8,7 @@
         "revision": "796aef7d72aa83f572d0a054138e9bd1813dddb0"
       },
       "homebrew/core": {
-        "revision": "51113f3ff5e6837bfe67b4059d2d861264e7bbc8"
+        "revision": "5d0f563955ccb6a22577838df57242f2d62ca060"
       },
       "homebrew/services": {
         "revision": "7ca25997ef98c0c02f8d4694c535751fa0c8e835"
@@ -1771,7 +1771,7 @@
       "Ubuntu 22.04 LTS (jammy)": {
         "HOMEBREW_VERSION": "3.4.11",
         "HOMEBREW_PREFIX": "/home/linuxbrew/.linuxbrew",
-        "Homebrew/linuxbrew-core": "51113f3ff5e6837bfe67b4059d2d861264e7bbc8",
+        "Homebrew/linuxbrew-core": "5d0f563955ccb6a22577838df57242f2d62ca060",
         "GCC": "11.2.0"
       }
     }
