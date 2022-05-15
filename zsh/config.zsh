@@ -1,5 +1,6 @@
 # language
 export LANG=ja_JP.UTF-8
+export KCODE=u
 export XDG_CONFIG_HOME=~/.config
 # editor
 export EDITOR=nvim

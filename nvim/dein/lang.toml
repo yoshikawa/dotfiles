@@ -1,6 +1,0 @@
-[[plugins]]
-repo = 'fatih/vim-go'
-on_ft = ['go']
-
-[[plugins]]
-repo  = 'cespare/vim-toml'
