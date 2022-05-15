@@ -43,7 +43,5 @@ zi light z-shell/F-Sy-H
 # History Search Multi Word
 zi load z-shell/H-S-MW
 # Starship cross-shell prompt theme
-zi ice as"command" from"gh-r" \
-  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-  atpull"%atclone" src"init.zsh"
-zi light starship/starship
+zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
+zinit load starship/starship
