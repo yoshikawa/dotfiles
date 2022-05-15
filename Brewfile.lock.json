@@ -5,7 +5,7 @@
         "revision": "92cfb59945e1a229d67e7c79d9c6eab93ae58525"
       },
       "homebrew/cask": {
-        "revision": "796aef7d72aa83f572d0a054138e9bd1813dddb0"
+        "revision": "2275e55b6f94525dbcbd12a3168ccfb74de2b2c4"
       },
       "homebrew/core": {
         "revision": "04c73a4f47adf38edd1f9bd5174b77d2d020d81b"
@@ -1707,19 +1707,19 @@
         }
       },
       "docker": {
-        "version": "4.7.1,77678",
+        "version": "4.8.1,78998",
         "options": {
           "full_name": "docker"
         }
       },
       "firefox": {
-        "version": "99.0.1",
+        "version": "100.0",
         "options": {
           "full_name": "firefox"
         }
       },
       "google-chrome": {
-        "version": "101.0.4951.41",
+        "version": "101.0.4951.64",
         "options": {
           "full_name": "google-chrome"
         }
@@ -1737,19 +1737,19 @@
         }
       },
       "slack": {
-        "version": "4.26.0",
+        "version": "4.26.1",
         "options": {
           "full_name": "slack"
         }
       },
       "visual-studio-code": {
-        "version": "1.66.2",
+        "version": "1.67.1",
         "options": {
           "full_name": "visual-studio-code"
         }
       },
       "warp": {
-        "version": "0.2022.04.18.09.08.stable_04",
+        "version": "0.2022.05.09.09.06.stable_01",
         "options": {
           "full_name": "warp"
         }
@@ -1759,9 +1759,9 @@
   "system": {
     "macos": {
       "monterey": {
-        "HOMEBREW_VERSION": "3.4.9",
+        "HOMEBREW_VERSION": "3.4.11",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "c8a327ce86e7dd61c434855528c6d9a96d0237f8",
+        "Homebrew/homebrew-core": "04c73a4f47adf38edd1f9bd5174b77d2d020d81b",
         "CLT": "13.3.1.0.1.1648687083",
         "Xcode": "13.3.1",
         "macOS": "12.3.1"

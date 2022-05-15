@@ -8,4 +8,3 @@ if [ -d ~/.zsh ]; then
 else
   print "ZSH CONFIGS NOT FOUND: ~/.zsh"
 fi
-
