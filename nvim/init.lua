@@ -1,32 +1,17 @@
-local present, impatient = pcall(require, "impatient")
+local impatient_ok, impatient = pcall(require, "impatient")
+if impatient_ok then impatient.enable_profile() end
 
-if present then
-   impatient.enable_profile()
+for _, source in ipairs {
+  "core.utils",
+  "core.options",
+  "core.bootstrap",
+  "core.plugins",
+  "core.autocmds",
+  "core.mappings",
+  "configs.which-key-register",
+} do
+  local status_ok, fault = pcall(require, source)
+  if not status_ok then vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault) end
 end
 
-local modules = {
-   "utils",
-   "options",
-   "autocmds",
-   "commands",
-}
-
-for _, module in ipairs(modules) do
-   local ok, err = pcall(require, "core." .. module)
-
-   if not ok then
-      error("Error loading " .. module .. "\n\n" .. err)
-   end
-end
-
--- check if custom init.lua file exists
-if vim.fn.filereadable(vim.fn.stdpath "config" .. "/lua/custom/init.lua") == 1 then
-   -- try to call custom init, if not successful, show error
-   local ok, err = pcall(require, "custom")
-
-   if not ok then
-      vim.notify("Error loading custom/init.lua\n\n" .. err)
-   end
-
-   return
-end
+astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
