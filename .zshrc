@@ -1,10 +1,7 @@
 if [ -d ~/.zsh ]; then
-  source ~/.zsh/zi.zsh
-  source ~/.zsh/brew.zsh
-  source ~/.zsh/plugins.zsh
-  source ~/.zsh/config.zsh
-  source ~/.zsh/alias.zsh
-  source ~/.zsh/functions.zsh
+  for file in ~/.zsh/*; do
+    source $file
+  done
 else
   print "ZSH CONFIGS NOT FOUND: ~/.zsh"
 fi

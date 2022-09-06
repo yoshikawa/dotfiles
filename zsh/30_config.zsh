@@ -28,3 +28,12 @@ fi
 if [ -z $TMUX ]; then
   export PATH="${HOME}/local/bin:${PATH}"
 fi
+# k8s
+if [ -x "$(which kubectl)" ]; then
+  source <(kubectl completion zsh)
+fi
+# zsh
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
