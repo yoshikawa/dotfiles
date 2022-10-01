@@ -1,5 +1,6 @@
 # alias
 alias cat='bat'
+alias cd='z'
 alias ls='exa'
 alias ll='ls -alF'
 alias la='ls -a'
@@ -31,7 +32,8 @@ alias u='cd ..'
 alias v='vim'
 #alias x=''
 alias y='yarn'
-alias z='zsh'
+alias z='zox'
+alias zii='zoxi'
 # editor
 alias edit='code'
 # NeoVim

@@ -21,6 +21,11 @@ zi light junegunn/fzf
 # stedolan/jq
 zi ice as"command" from"gh-r" mv"jq* -> jq" pick"jq"
 zi light stedolan/jq
+# ajeetdsouza/zoxide
+zi ice as"command" from"gh-r" mv"zoxide* -> zoxide" pick"zoxide/zoxide"
+zi light ajeetdsouza/zoxide
+zi ice has'zoxide'
+zi light z-shell/zsh-zoxide
 # sharkdp/bat
 zi ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zi light sharkdp/bat

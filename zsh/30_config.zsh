@@ -37,3 +37,11 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+# asdf
+if [ -x "$(which asdf)" ]; then
+  . $(brew --prefix asdf)/libexec/asdf.sh
+fi
+# zoxide
+if [ -x "$(which zoxide)" ]; then
+  eval "$(zoxide init zsh --cmd zox)"
+fi
