@@ -43,6 +43,12 @@ zi ice as"program" from"gh-r" mv"hub-*/bin/hub -> hub" atclone'./hub alias -s > 
 zi light github/hub
 zi ice silent as"completion" mv'hub.zsh_completion -> _hub'
 zi snippet https://github.com/github/hub/raw/master/etc/hub.zsh_completion
+# lazygit
+zinit ice as"program" from"gh-r" mv"lazygit* -> lazygit" atload"alias lg=lazygit"
+zinit light jesseduffield/lazygit
+# ClementTsang/bottom, cross-platform graphical process/system monitor.
+zinit ice as"program" from"gh-r" mv"btm* -> btm" atload"alias top=btm"
+zinit light ClementTsang/bottom
 # Syntax Highlighting
 zi light z-shell/F-Sy-H
 # History Search Multi Word
