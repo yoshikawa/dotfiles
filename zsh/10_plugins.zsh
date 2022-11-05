@@ -18,6 +18,9 @@ zi light b4b4r07/enhancd
 # junegunn/fzf
 zi ice as"command" from"gh-r" mv"fzf* -> fzf" pick"fzf/fzf"
 zi light junegunn/fzf
+
+zi ice as"program" from"gh-r" mv"peco* -> peco" pick"*/peco"
+zi light "peco/peco"
 # stedolan/jq
 zi ice as"command" from"gh-r" mv"jq* -> jq" pick"jq"
 zi light stedolan/jq
