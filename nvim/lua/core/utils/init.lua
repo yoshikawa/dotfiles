@@ -40,9 +40,9 @@ local function load_module_file(module)
     -- if successful at loading, set the return variable
     if status_ok then
       found_module = loaded_module
-    -- if unsuccessful, throw an error
+      -- if unsuccessful, throw an error
     else
-      vim.api.nvim_err_writeln("Error loading file: " .. found_module)
+      vim.api.nvim_err_writeln("Error loading file: " .. found_module .. "\n\n" .. loaded_module)
     end
   end
   -- return the loaded module or nil if no file found
@@ -70,12 +70,12 @@ local function func_or_extend(overrides, default, extend)
   if extend then
     -- if the override is a table, use vim.tbl_deep_extend
     if type(overrides) == "table" then
-      default = vim.tbl_deep_extend("force", default, overrides)
-    -- if the override is  a function, call it with the default and overwrite default with the return value
+      default = astronvim.default_tbl(overrides, default)
+      -- if the override is  a function, call it with the default and overwrite default with the return value
     elseif type(overrides) == "function" then
       default = overrides(default)
     end
-  -- if extend is set to false and we have a provided override, simply override the default
+    -- if extend is set to false and we have a provided override, simply override the default
   elseif overrides ~= nil then
     default = overrides
   end
@@ -83,12 +83,37 @@ local function func_or_extend(overrides, default, extend)
   return default
 end
 
+--- Merge extended options with a default table of options
+-- @param opts the new options that should be merged with the default table
+-- @param default the default table that you want to merge into
+-- @return the merged table
+function astronvim.default_tbl(opts, default)
+  opts = opts or {}
+  return default and vim.tbl_deep_extend("force", default, opts) or opts
+end
+
 --- Call function if a condition is met
 -- @param func the function to run
 -- @param condition a boolean value of whether to run the function or not
 function astronvim.conditional_func(func, condition, ...)
   -- if the condition is true or no condition is provided, evaluate the function with the rest of the parameters and return the result
-  if (condition == nil and true or condition) and type(func) == "function" then return func(...) end
+  if (condition == nil or condition) and type(func) == "function" then return func(...) end
+end
+
+--- Get highlight properties for a given highlight name
+-- @param name highlight group name
+-- @return table of highlight group properties
+function astronvim.get_hlgroup(name, fallback)
+  if vim.fn.hlexists(name) == 1 then
+    local hl = vim.api.nvim_get_hl_by_name(name, vim.o.termguicolors)
+    if not hl["foreground"] then hl["foreground"] = "NONE" end
+    if not hl["background"] then hl["background"] = "NONE" end
+    hl.fg, hl.bg, hl.sp = hl.foreground, hl.background, hl.special
+    hl.ctermfg, hl.ctermbg = hl.foreground, hl.background
+    return hl
+  else
+    return fallback
+  end
 end
 
 --- Trim a string or return nil
@@ -96,13 +121,35 @@ end
 -- @return a trimmed version of the string or nil if the parameter isn't a string
 function astronvim.trim_or_nil(str) return type(str) == "string" and vim.trim(str) or nil end
 
+--- Add left and/or right padding to a string
+-- @param str the string to add padding to
+-- @param padding a table of the format `{ left = 0, right = 0}` that defines the number of spaces to include to the left and the right of the string
+-- @return the padded string
+function astronvim.pad_string(str, padding)
+  padding = padding or {}
+  return str and str ~= "" and string.rep(" ", padding.left or 0) .. str .. string.rep(" ", padding.right or 0) or ""
+end
+
+--- Initialize icons used throughout the user interface
+function astronvim.initialize_icons()
+  astronvim.icons = astronvim.user_plugin_opts("icons", require "core.icons.nerd_font")
+  astronvim.text_icons = astronvim.user_plugin_opts("text_icons", require "core.icons.text")
+end
+
+--- Get an icon from `lspkind` if it is available and return it
+-- @param kind the kind of icon in `lspkind` to retrieve
+-- @return the icon
+function astronvim.get_icon(kind)
+  local icon_pack = vim.g.icons_enabled and "icons" or "text_icons"
+  if not astronvim[icon_pack] then astronvim.initialize_icons() end
+  return astronvim[icon_pack] and astronvim[icon_pack][kind] or ""
+end
+
 --- Serve a notification with a title of AstroNvim
 -- @param msg the notification body
 -- @param type the type of the notification (:help vim.log.levels)
 -- @param opts table of nvim-notify options to use (:help notify-options)
-function astronvim.notify(msg, type, opts)
-  vim.notify(msg, type, vim.tbl_deep_extend("force", { title = "AstroNvim" }, opts or {}))
-end
+function astronvim.notify(msg, type, opts) vim.notify(msg, type, astronvim.default_tbl(opts, { title = "AstroNvim" })) end
 
 --- Wrapper function for neovim echo API
 -- @param messages an array like table where each item is an array like table of strings to echo
@@ -160,7 +207,7 @@ function astronvim.initialize_packer()
     }
     astronvim.echo { { "Initializing Packer...\n\n" } }
     -- add packer and try loading it
-    vim.cmd "packadd packer.nvim"
+    vim.cmd.packadd "packer.nvim"
     packer_avail, _ = pcall(require, "packer")
     -- if packer didn't load, print error
     if not packer_avail then vim.api.nvim_err_writeln("Failed to load packer at:" .. packer_path) end
@@ -174,7 +221,7 @@ function astronvim.initialize_packer()
     -- if the file loads, run the compiled function
     if run_me then
       run_me()
-    -- if there is no compiled file, prompt the user to run :PackerSync
+      -- if there is no compiled file, prompt the user to run :PackerSync
     else
       astronvim.echo { { "Please run " }, { ":PackerSync", "Title" } }
     end
@@ -212,17 +259,19 @@ function astronvim.user_plugin_opts(module, default, extend, prefix)
   return default
 end
 
---- Open a URL under the cursor with the current operating system
-function astronvim.url_opener()
-  -- if mac use the open command
+--- Open a URL under the cursor with the current operating system (Supports Mac OS X and *nix)
+-- @param path the path of the file to open with the system opener
+function astronvim.system_open(path)
+  path = path or vim.fn.expand "<cfile>"
   if vim.fn.has "mac" == 1 then
-    vim.fn.jobstart({ "open", vim.fn.expand "<cfile>" }, { detach = true })
-  -- if unix then use xdg-open
+    -- if mac use the open command
+    vim.fn.jobstart({ "open", path }, { detach = true })
   elseif vim.fn.has "unix" == 1 then
-    vim.fn.jobstart({ "xdg-open", vim.fn.expand "<cfile>" }, { detach = true })
-  -- if any other operating system notify the user that there is currently no support
+    -- if unix then use xdg-open
+    vim.fn.jobstart({ "xdg-open", path }, { detach = true })
   else
-    astronvim.notify("gx is not supported on this OS!", "error")
+    -- if any other operating system notify the user that there is currently no support
+    astronvim.notify("System open is not supported on this OS!", "error")
   end
 end
 
@@ -297,14 +346,14 @@ function astronvim.which_key_register(mappings, opts)
     for prefix, mapping_table in pairs(prefixes) do
       which_key.register(
         mapping_table,
-        vim.tbl_deep_extend("force", {
+        astronvim.default_tbl(opts, {
           mode = mode,
           prefix = prefix,
           buffer = nil,
           silent = true,
           noremap = true,
           nowait = true,
-        }, opts or {})
+        })
       )
     end
   end
@@ -386,14 +435,14 @@ function astronvim.set_mappings(map_table, base)
       -- build the options for the command accordingly
       if options then
         local cmd = options
+        local keymap_opts = base or {}
         if type(options) == "table" then
           cmd = options[1]
-          options[1] = nil
-        else
-          options = {}
+          keymap_opts = vim.tbl_deep_extend("force", options, keymap_opts)
+          keymap_opts[1] = nil
         end
         -- extend the keybinding options with the base provided and set the mapping
-        map(mode, keymap, cmd, vim.tbl_deep_extend("force", options, base or {}))
+        map(mode, keymap, cmd, keymap_opts)
       end
     end
   end
@@ -412,17 +461,12 @@ function astronvim.set_url_match()
   if vim.g.highlighturl_enabled then vim.fn.matchadd("HighlightURL", astronvim.url_matcher, 15) end
 end
 
---- Toggle URL/URI syntax highlighting rules
-function astronvim.toggle_url_match()
-  vim.g.highlighturl_enabled = not vim.g.highlighturl_enabled
-  astronvim.set_url_match()
-end
-
 --- Run a shell command and capture the output and if the command succeeded or failed
 -- @param cmd the terminal command to execute
 -- @param show_error boolean of whether or not to show an unsuccessful command as an error to the user
 -- @return the result of a successfully executed command or nil
 function astronvim.cmd(cmd, show_error)
+  if vim.fn.has "win32" == 1 then cmd = { "cmd.exe", "/C", cmd } end
   local result = vim.fn.system(cmd)
   local success = vim.api.nvim_get_vvar "shell_error" == 0
   if not success and (show_error == nil and true or show_error) then
@@ -431,6 +475,9 @@ function astronvim.cmd(cmd, show_error)
   return success and result or nil
 end
 
+require "core.utils.ui"
+require "core.utils.status"
 require "core.utils.updater"
+require "core.utils.lsp"
 
 return astronvim

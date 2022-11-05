@@ -6,6 +6,7 @@ for _, source in ipairs {
   "core.options",
   "core.bootstrap",
   "core.plugins",
+  "core.diagnostics",
   "core.autocmds",
   "core.mappings",
   "configs.which-key-register",
@@ -15,3 +16,7 @@ for _, source in ipairs {
 end
 
 astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
+
+if vim.fn.has "nvim-0.8" ~= 1 or vim.version().prerelease then
+  vim.schedule(function() astronvim.notify("Unsupported Neovim Version! Please check the requirements", "error") end)
+end
