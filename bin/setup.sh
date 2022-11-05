@@ -14,6 +14,9 @@ SCRIPT_DIR=$(
 # homebrew
 ${SCRIPT_DIR}/brew.sh
 
+# switch zsh
+${SCRIPT_DIR}/switch-zsh.sh
+
 # tpm(tmux plugin manager)
 if [ ! -d $TPM_PATH ]; then
     mkdir -p $TPM_PATH
@@ -22,7 +25,7 @@ else
     cd $TPM_PATH && git pull
 fi
 
-# zinit
+# zi
 if [ ! -d $ZI_PATH ]; then
     mkdir -p $ZI_PATH
     git clone $ZI_GITHUB_URL $ZI_PATH

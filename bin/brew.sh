@@ -68,3 +68,5 @@ elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
 else
   echo "Your platform ($(uname -a)) is not supported."
 fi
+
+exec $SHELL -l

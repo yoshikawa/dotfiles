@@ -26,6 +26,9 @@ zi ice as"command" from"gh-r" mv"zoxide* -> zoxide" pick"zoxide/zoxide"
 zi light ajeetdsouza/zoxide
 zi ice has'zoxide'
 zi light z-shell/zsh-zoxide
+# ogham/exa
+zi ice wait"1" lucid as"program" from"gh-r" mv"bin/exa* -> exa"
+zi light ogham/exa
 # sharkdp/bat
 zi ice as"command" from"gh-r" mv"bat* -> bat" pick"bat/bat"
 zi light sharkdp/bat
@@ -44,15 +47,15 @@ zi light github/hub
 zi ice silent as"completion" mv'hub.zsh_completion -> _hub'
 zi snippet https://github.com/github/hub/raw/master/etc/hub.zsh_completion
 # lazygit
-zinit ice as"program" from"gh-r" mv"lazygit* -> lazygit" atload"alias lg=lazygit"
-zinit light jesseduffield/lazygit
+zi ice as"program" from"gh-r" mv"lazygit* -> lazygit" atload"alias lg=lazygit"
+zi light jesseduffield/lazygit
 # ClementTsang/bottom, cross-platform graphical process/system monitor.
-zinit ice as"program" from"gh-r" mv"btm* -> btm" atload"alias top=btm"
-zinit light ClementTsang/bottom
+zi ice as"program" from"gh-r" mv"btm* -> btm" atload"alias top=btm"
+zi light ClementTsang/bottom
 # Syntax Highlighting
 zi light z-shell/F-Sy-H
 # History Search Multi Word
 zi load z-shell/H-S-MW
 # Starship cross-shell prompt theme
-zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
-zinit load starship/starship
+zi ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
+zi load starship/starship

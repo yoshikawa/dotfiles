@@ -37,7 +37,7 @@ if [ "${OS_TYPE}" == "brew" ]; then
   xcode-select --install
 elif [ "${OS_TYPE}" == "apt" ]; then
   sudo apt update && sudo apt upgrade -y
-  sudo apt install -y build-essential curl file git
+  sudo apt install -y build-essential curl file git unzip
 elif [ "${OS_TYPE}" == "yum" ]; then
   sudo yum groupinstall -y 'Development Tools'
   sudo yum install -y curl file git
