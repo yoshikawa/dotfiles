@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 DOTPATH=~/dotfiles
 CONFIG_HOME=~/.config
 ZSH_HOME=~/.zsh

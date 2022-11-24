@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash
 
 TPM_PATH=~/.tmux/plugins/tpm
 TPM_GITHUB_URL=https://github.com/tmux-plugins/tpm.git
@@ -14,7 +14,7 @@ SCRIPT_DIR=$(
 # homebrew
 ${SCRIPT_DIR}/brew.sh
 
-# switch zsh
+# zsh
 ${SCRIPT_DIR}/switch-zsh.sh
 
 # tpm(tmux plugin manager)
