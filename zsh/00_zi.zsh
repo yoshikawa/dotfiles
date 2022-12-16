@@ -1,4 +1,4 @@
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -C
 if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
   print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (z-shell/zi)…%f"
   command mkdir -p $HOME/.zi

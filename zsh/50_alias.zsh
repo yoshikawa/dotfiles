@@ -42,7 +42,6 @@ alias vim=nvim
 alias pj='cd $(ghq list -p | fzf)'
 alias gopn='hub browse $(ghq list | peco | cut -d "/" -f 2,3,4)'
 alias dotfiles="cd ~/dotfiles"
-alias dc='docker-compose'
 alias allps='ps aux'
 alias rezsh="exec $SHELL -l"
 alias pwdc='pwd | tr -d "\n" | pbcopy'

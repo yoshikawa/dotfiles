@@ -32,15 +32,7 @@ fi
 if [ -x "$(which kubectl)" ]; then
   source <(kubectl completion zsh)
 fi
-# zsh
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-fi
 # asdf
 if [ -x "$(which asdf)" ]; then
   . $(brew --prefix asdf)/libexec/asdf.sh
-fi
-# zoxide
-if [ -x "$(which zoxide)" ]; then
-  eval "$(zoxide init zsh --cmd zox)"
 fi
