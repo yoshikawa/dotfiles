@@ -1,8 +1,6 @@
-local status_ok, aerial = pcall(require, "aerial")
-if not status_ok then return end
-aerial.setup(astronvim.user_plugin_opts("plugins.aerial", {
+require("aerial").setup(astronvim.user_plugin_opts("plugins.aerial", {
   attach_mode = "global",
-  backends = { "lsp", "treesitter", "markdown" },
+  backends = { "lsp", "treesitter", "markdown", "man" },
   layout = {
     min_width = 28,
   },

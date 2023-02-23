@@ -10,9 +10,7 @@ zi wait lucid light-mode for \
     OMZP::brew \
     OMZP::docker/_docker \
     OMZL::clipboard.zsh \
-    OMZL::completion.zsh \
-    OMZL::compfix.zsh \
-    OMZP::tmux
+    OMZL::compfix.zsh
 zi wait lucid for \
   atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
      z-shell/F-Sy-H \
@@ -56,13 +54,13 @@ zi wait lucid from"gh-r" as"program" for \
         mv"bin/exa* -> exa"           ogham/exa \
         mv"fd* -> fd"                 @sharkdp/fd \
         mv"ripgrep* -> ripgrep"       BurntSushi/ripgrep \
+        mv"gdu* -> gdu"               dundee/gdu \
     atload'unalias zi 2>/dev/null; eval "$(zoxide init zsh --cmd zox)"' \
         mv"zoxide* -> zoxide"       ajeetdsouza/zoxide \
 
 # ClementTsang/bottom, cross-platform graphical process/system monitor.
 zi ice as"program" from"gh-r" mv"btm* -> btm" atload"alias top=btm"
 zi light ClementTsang/bottom
-
 # Starship cross-shell prompt theme
 zi ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
 zi load starship/starship
@@ -70,13 +68,15 @@ zi load starship/starship
 elif [ "${arch}" = arm64 ]; then
 zi wait lucid from"gh-r" as"program" for \
         mv"bat* -> bat" pick"bat/bat" bpick"*aarch64-apple-darwin*" @sharkdp/bat \
-        mv"delta* -> delta"       bpick"*aarch64-apple-darwin*"    dandavison/delta \
-        mv"bin/exa* -> exa"       bpick"*aarch64-apple-darwin*"    ogham/exa \
-        mv"fd* -> fd"             bpick"*aarch64-apple-darwin*"    @sharkdp/fd \
-        mv"ripgrep* -> ripgrep"   bpick"*aarch64-apple-darwin*"    BurntSushi/ripgrep \
+        mv"delta* -> delta"       bpick"*aarch64-apple-darwin*"     dandavison/delta \
+        mv"bin/exa* -> exa"       bpick"*aarch64-apple-darwin*"     ogham/exa \
+        mv"fd* -> fd"             bpick"*aarch64-apple-darwin*"     @sharkdp/fd \
+        mv"ripgrep* -> ripgrep"   bpick"*aarch64-apple-darwin*"     BurntSushi/ripgrep \
+        mv"gdu* -> gdu"           bpick"*darwin_arm64*"             dundee/gdu \
+    atload'alias top=btm' \
+        mv"btm* -> btm"           bpick"*aarch64-apple-darwin*"     ClementTsang/bottom \
     atload'unalias zi 2>/dev/null; eval "$(zoxide init zsh --cmd zox)"' \
         mv"zoxide* -> zoxide"   bpick"*aarch64-apple-darwin*"    ajeetdsouza/zoxide \
-
 # Starship cross-shell prompt theme
 zi ice from"gh-r" as"command" bpick"*aarch64-apple-darwin*" atload'eval "$(starship init zsh)"'
 zi load starship/starship

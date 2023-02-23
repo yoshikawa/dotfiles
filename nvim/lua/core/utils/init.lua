@@ -55,6 +55,10 @@ astronvim.user_settings = load_module_file "user.init"
 astronvim.default_compile_path = stdpath "data" .. "/packer_compiled.lua"
 --- table of user created terminals
 astronvim.user_terminals = {}
+--- table of plugins to load with git
+astronvim.git_plugins = {}
+--- table of plugins to load when file opened
+astronvim.file_plugins = {}
 --- regex used for matching a valid URL/URI string
 astronvim.url_matcher =
   "\\v\\c%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)%([&:#*@~%_\\-=?!+;/0-9a-z]+%(%([.;/?]|[.][.]+)[&:#*@~%_\\-=?!+/0-9a-z]+|:\\d+|,%(%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)@![0-9a-z]+))*|\\([&:#*@~%_\\-=?!+;/.0-9a-z]*\\)|\\[[&:#*@~%_\\-=?!+;/.0-9a-z]*\\]|\\{%([&:#*@~%_\\-=?!+;/.0-9a-z]*|\\{[&:#*@~%_\\-=?!+;/.0-9a-z]*})\\})+"
@@ -111,9 +115,8 @@ function astronvim.get_hlgroup(name, fallback)
     hl.fg, hl.bg, hl.sp = hl.foreground, hl.background, hl.special
     hl.ctermfg, hl.ctermbg = hl.foreground, hl.background
     return hl
-  else
-    return fallback
   end
+  return fallback
 end
 
 --- Trim a string or return nil
@@ -149,7 +152,15 @@ end
 -- @param msg the notification body
 -- @param type the type of the notification (:help vim.log.levels)
 -- @param opts table of nvim-notify options to use (:help notify-options)
-function astronvim.notify(msg, type, opts) vim.notify(msg, type, astronvim.default_tbl(opts, { title = "AstroNvim" })) end
+function astronvim.notify(msg, type, opts)
+  vim.schedule(function() vim.notify(msg, type, astronvim.default_tbl(opts, { title = "AstroNvim" })) end)
+end
+
+--- Trigger an AstroNvim user event
+-- @param event the event name to be appended to Astro
+function astronvim.event(event)
+  vim.schedule(function() vim.api.nvim_exec_autocmds("User", { pattern = "Astro" .. event }) end)
+end
 
 --- Wrapper function for neovim echo API
 -- @param messages an array like table where each item is an array like table of strings to echo
@@ -189,11 +200,11 @@ end
 --- Check if packer is installed and loadable, if not then install it and make sure it loads
 function astronvim.initialize_packer()
   -- try loading packer
-  local packer_avail, _ = pcall(require, "packer")
+  local packer_path = stdpath "data" .. "/site/pack/packer/opt/packer.nvim"
+  local packer_avail = vim.fn.empty(vim.fn.glob(packer_path)) == 0
   -- if packer isn't availble, reinstall it
   if not packer_avail then
     -- set the location to install packer
-    local packer_path = stdpath "data" .. "/site/pack/packer/start/packer.nvim"
     -- delete the old packer install if one exists
     vim.fn.delete(packer_path, "rf")
     -- clone packer
@@ -205,10 +216,10 @@ function astronvim.initialize_packer()
       "https://github.com/wbthomason/packer.nvim",
       packer_path,
     }
-    astronvim.echo { { "Initializing Packer...\n\n" } }
     -- add packer and try loading it
     vim.cmd.packadd "packer.nvim"
-    packer_avail, _ = pcall(require, "packer")
+    local packer_loaded, _ = pcall(require, "packer")
+    packer_avail = packer_loaded
     -- if packer didn't load, print error
     if not packer_avail then vim.api.nvim_err_writeln("Failed to load packer at:" .. packer_path) end
   end
@@ -218,12 +229,41 @@ function astronvim.initialize_packer()
     local run_me, _ = loadfile(
       astronvim.user_plugin_opts("plugins.packer", { compile_path = astronvim.default_compile_path }).compile_path
     )
-    -- if the file loads, run the compiled function
     if run_me then
+      -- if the file loads, run the compiled function
       run_me()
-      -- if there is no compiled file, prompt the user to run :PackerSync
     else
-      astronvim.echo { { "Please run " }, { ":PackerSync", "Title" } }
+      -- if there is no compiled file, ask user to sync packer
+      require "core.plugins"
+      vim.api.nvim_create_autocmd("User", {
+        once = true,
+        pattern = "PackerComplete",
+        callback = function()
+          vim.cmd.bw()
+          vim.tbl_map(require, { "nvim-treesitter", "mason" })
+          astronvim.notify "Mason is installing packages if configured, check status with :Mason"
+        end,
+      })
+      vim.opt.cmdheight = 1
+      vim.notify "Please wait while plugins are installed..."
+      vim.cmd.PackerSync()
+    end
+  end
+end
+
+function astronvim.lazy_load_commands(plugin, commands)
+  if type(commands) == "string" then commands = { commands } end
+  if astronvim.is_available(plugin) and not packer_plugins[plugin].loaded then
+    for _, command in ipairs(commands) do
+      pcall(
+        vim.cmd,
+        string.format(
+          'command -nargs=* -range -bang -complete=file %s lua require("packer.load")({"%s"}, { cmd = "%s", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)',
+          command,
+          plugin,
+          command
+        )
+      )
     end
   end
 end
@@ -280,22 +320,19 @@ end
 
 --- Toggle a user terminal if it exists, if not then create a new one and save it
 -- @param term_details a terminal command string or a table of options for Terminal:new() (Check toggleterm.nvim documentation for table format)
-function astronvim.toggle_term_cmd(term_details)
+function astronvim.toggle_term_cmd(opts)
+  local terms = astronvim.user_terminals
   -- if a command string is provided, create a basic table for Terminal:new() options
-  if type(term_details) == "string" then term_details = { cmd = term_details, hidden = true } end
-  -- use the command as the key for the table
-  local term_key = term_details.cmd
-  -- set the count in the term details
-  if vim.v.count > 0 and term_details.count == nil then
-    term_details.count = vim.v.count
-    term_key = term_key .. vim.v.count
-  end
+  if type(opts) == "string" then opts = { cmd = opts, hidden = true } end
+  local num = vim.v.count > 0 and vim.v.count or 1
   -- if terminal doesn't exist yet, create it
-  if astronvim.user_terminals[term_key] == nil then
-    astronvim.user_terminals[term_key] = require("toggleterm.terminal").Terminal:new(term_details)
+  if not terms[opts.cmd] then terms[opts.cmd] = {} end
+  if not terms[opts.cmd][num] then
+    if not opts.count then opts.count = vim.tbl_count(terms) * 100 + num end
+    terms[opts.cmd][num] = require("toggleterm.terminal").Terminal:new(opts)
   end
   -- toggle the terminal
-  astronvim.user_terminals[term_key]:toggle()
+  astronvim.user_terminals[opts.cmd][num]:toggle()
 end
 
 --- Add a source to cmp
@@ -424,6 +461,22 @@ end
 -- @return boolean value if the plugin is available
 function astronvim.is_available(plugin) return packer_plugins ~= nil and packer_plugins[plugin] ~= nil end
 
+--- A helper function to wrap a module function to require a plugin before running
+-- @param plugin the plugin string to call `require("packer").laoder` with
+-- @param module the system module where the functions live (e.g. `vim.ui`)
+-- @param func_names a string or a list like table of strings for functions to wrap in the given moduel (e.g. `{ "ui", "select }`)
+function astronvim.load_plugin_with_func(plugin, module, func_names)
+  if type(func_names) == "string" then func_names = { func_names } end
+  for _, func in ipairs(func_names) do
+    local old_func = module[func]
+    module[func] = function(...)
+      module[func] = old_func
+      require("packer").loader(plugin)
+      module[func](...)
+    end
+  end
+end
+
 --- Table based API for setting keybindings
 -- @param map_table A nested table where the first key is the vim mode, the second key is the key to map, and the value is the function to set the mapping to
 -- @param base A base set of options to set on every keybinding
@@ -472,12 +525,82 @@ function astronvim.cmd(cmd, show_error)
   if not success and (show_error == nil and true or show_error) then
     vim.api.nvim_err_writeln("Error running command: " .. cmd .. "\nError message:\n" .. result)
   end
-  return success and result or nil
+  return success and result:gsub("[\27\155][][()#;?%d]*[A-PRZcf-ntqry=><~]", "") or nil
+end
+
+--- Check if a buffer is valid
+-- @param bufnr the buffer to check
+-- @return true if the buffer is valid or false
+function astronvim.is_valid_buffer(bufnr)
+  if not bufnr or bufnr < 1 then return false end
+  return vim.bo[bufnr].buflisted and vim.api.nvim_buf_is_valid(bufnr)
+end
+
+--- Move the current buffer tab n places in the bufferline
+-- @param n numer of tabs to move the current buffer over by (positive = right, negative = left)
+function astronvim.move_buf(n)
+  if n == 0 then return end -- if n = 0 then no shifts are needed
+  local bufs = vim.t.bufs -- make temp variable
+  for i, bufnr in ipairs(bufs) do -- loop to find current buffer
+    if bufnr == vim.api.nvim_get_current_buf() then -- found index of current buffer
+      for _ = 0, (n % #bufs) - 1 do -- calculate number of right shifts
+        local new_i = i + 1 -- get next i
+        if i == #bufs then -- if at end, cycle to beginning
+          new_i = 1 -- next i is actually 1 if at the end
+          local val = bufs[i] -- save value
+          table.remove(bufs, i) -- remove from end
+          table.insert(bufs, new_i, val) -- insert at beginning
+        else -- if not at the end,then just do an in place swap
+          bufs[i], bufs[new_i] = bufs[new_i], bufs[i]
+        end
+        i = new_i -- iterate i to next value
+      end
+      break
+    end
+  end
+  vim.t.bufs = bufs -- set buffers
+  vim.cmd.redrawtabline() -- redraw tabline
+end
+
+--- Navigate left and right by n places in the bufferline
+-- @param n the number of tabs to navigate to (positive = right, negative = left)
+function astronvim.nav_buf(n)
+  local current = vim.api.nvim_get_current_buf()
+  for i, v in ipairs(vim.t.bufs) do
+    if current == v then
+      vim.cmd.b(vim.t.bufs[(i + n - 1) % #vim.t.bufs + 1])
+      break
+    end
+  end
+end
+
+--- Close a given buffer
+-- @param bufnr? the buffer number to close or the current buffer if not provided
+function astronvim.close_buf(bufnr, force)
+  if force == nil then force = false end
+  local current = vim.api.nvim_get_current_buf()
+  if not bufnr or bufnr == 0 then bufnr = current end
+  if bufnr == current then astronvim.nav_buf(-1) end
+
+  if astronvim.is_available "bufdelete.nvim" then
+    require("bufdelete").bufdelete(bufnr, force)
+  else
+    vim.cmd((force and "bd!" or "confirm bd") .. bufnr)
+  end
+end
+
+--- Close the current tab
+function astronvim.close_tab()
+  if #vim.api.nvim_list_tabpages() > 1 then
+    vim.t.bufs = nil
+    vim.cmd.tabclose()
+  end
 end
 
 require "core.utils.ui"
 require "core.utils.status"
 require "core.utils.updater"
+require "core.utils.mason"
 require "core.utils.lsp"
 
 return astronvim
