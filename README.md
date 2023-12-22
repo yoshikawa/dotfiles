@@ -18,11 +18,10 @@ bash -c "$(curl -L https://raw.githubusercontent.com/yoshikawa/dotfiles/main/bin
 This repository setups the following tools.
 
 - [zsh](https://github.com/zsh-users/zsh)
-  - [zi](https://github.com/z-shell/zi)
+  - [sheldon](https://github.com/rossmacarthur/sheldon)
 - [tmux](https://github.com/tmux/tmux)
   - [tpm](https://github.com/tmux-plugins/tpm)
-- [Neovim](https://github.com/neovim/neovim)
-  - [packer.nvim](https://github.com/wbthomason/packer.nvim)
+- [helix](https://github.com/helix-editor/helix)
 
 ### LICENSE
 
