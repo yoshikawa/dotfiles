@@ -12,10 +12,18 @@ for f in .??*; do
     ln -snfv "$DOTPATH/$f" "$HOME"/"$f"
 done
 
-# ZSH
-if [ -d $ZSH_HOME ]; then
-    ln -sfv ${DOTPATH}/zsh/* $ZSH_HOME
+# sheldon
+if [ -d $CONFIG_HOME ]; then
+    ln -sfv ${DOTPATH}/sheldon $CONFIG_HOME
 else
-    mkdir $ZSH_HOME
-    ln -sfv ${DOTPATH}/zsh/* $ZSH_HOME
+    mkdir $CONFIG_HOME
+    ln -sfv ${DOTPATH}/sheldon $CONFIG_HOME
+fi
+
+# sheldon
+if [ -d $CONFIG_HOME ]; then
+    ln -sfv ${DOTPATH}/helix $CONFIG_HOME
+else
+    mkdir $CONFIG_HOME
+    ln -sfv ${DOTPATH}/helix $CONFIG_HOME
 fi

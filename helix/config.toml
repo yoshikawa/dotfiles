@@ -1,0 +1,7 @@
+theme = "onedark"
+
+[editor]
+true-color = true
+cursorline = true
+color-modes = true
+auto-completion = true

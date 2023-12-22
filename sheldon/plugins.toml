@@ -1,0 +1,40 @@
+shell = "zsh"
+
+[templates]
+defer = "{% for file in files %} zsh-defer source \"{{ file }}\"\n {% endfor %}"
+defer-more = "{% for file in files %} zsh-defer -t 0.5 source \"{{ file }}\"\n {% endfor %}"
+
+
+[plugins.zsh-defer]
+github = 'romkatv/zsh-defer'
+apply = ['source']
+
+[plugins.compinit]
+inline = 'autoload -Uz compinit && zsh-defer compinit'
+
+[plugins.base16]
+github = "chriskempson/base16-shell"
+
+[plugins.colors]
+inline = 'autoload -Uz colors && zsh-defer colors'
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.zsh-autosuggestions]
+github = 'zsh-users/zsh-autosuggestions'
+apply = ['defer']
+
+[plugins.zsh-syntax-highlighting]
+github = 'zsh-users/zsh-syntax-highlighting'
+apply = ['defer']
+
+[plugins.dotfiles-sync]
+local = '~/dotfiles/zsh/sync'
+use = ['*.zsh']
+apply = ['source']
+
+[plugins.dotfiles-defer]
+local = '~/dotfiles/zsh/defer'
+use = ['*.zsh']
+apply = ['defer']

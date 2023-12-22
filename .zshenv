@@ -8,3 +8,4 @@ setopt append_history
 setopt share_history
 setopt hist_no_store
 setopt hist_expand
+. "$HOME/.cargo/env"
