@@ -3,9 +3,9 @@ export LANG=ja_JP.UTF-8
 export KCODE=u
 export XDG_CONFIG_HOME=~/.config
 # editor
-export EDITOR=nvim
-export VISUAL=nvim
-export MANPAGER='nvim -c MANPAGER -'
+export EDITOR=hx
+export VISUAL=hx
+export MANPAGER='hx -c MANPAGER -'
 # ls color
 export CLICOLOR=true
 export LSCOLORS='exfxcxdxbxGxDxabagacad'

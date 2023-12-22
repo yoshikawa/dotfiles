@@ -1,7 +1,7 @@
 # alias
 alias cat='bat'
 alias cd='z'
-alias ls='exa'
+alias ls='eza'
 alias ll='ls -alF'
 alias la='ls -a'
 alias lt='ls -T'
