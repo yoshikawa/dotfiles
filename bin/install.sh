@@ -5,6 +5,7 @@ GITHUB_URL=https://github.com/yoshikawa/dotfiles
 OS_NAME="$(uname | awk '{print tolower($0)}')"
 OS_FULL="$(uname -a)"
 OS_TYPE=
+SCRIPTPATH=${DOTPATH}/bin
 
 if [ "${OS_NAME}" == "linux" ]; then
   if [ $(echo "${OS_FULL}" | grep -c "amzn1") -gt 0 ]; then
@@ -55,18 +56,11 @@ else
   exit 1
 fi
 
-# env
-SCRIPT_DIR=$(
-    cd $DOTPATH
-    cd $(dirname $0)
-    pwd
-)
-
 # homebrew
-${SCRIPT_DIR}/brew.sh
+${SCRIPTPATH}/brew.sh
 # zsh
-${SCRIPT_DIR}/switch-zsh.sh
+${SCRIPTPATH}/switch-zsh.sh
 # tmux
-${SCRIPT_DIR}/tmux.sh
+${SCRIPTPATH}/tmux.sh
 # symbolic link
-${SCRIPT_DIR}/ln.sh
+${SCRIPTPATH}/ln.sh
