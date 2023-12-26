@@ -5,11 +5,6 @@ GITHUB_URL=https://github.com/yoshikawa/dotfiles
 OS_NAME="$(uname | awk '{print tolower($0)}')"
 OS_FULL="$(uname -a)"
 OS_TYPE=
-# env
-SCRIPT_DIR=$(
-    cd $(dirname $0)
-    pwd
-)
 
 if [ "${OS_NAME}" == "linux" ]; then
   if [ $(echo "${OS_FULL}" | grep -c "amzn1") -gt 0 ]; then
@@ -54,11 +49,18 @@ if type "git" >/dev/null 2>&1; then
     cd $DOTPATH && git pull
   else
     git clone ${GITHUB_URL}.git $DOTPATH
+    cd $DOPATH
   fi
 else
   echo "Install git!"
   exit 1
 fi
+
+# env
+SCRIPT_DIR=$(
+    cd $(dirname $0)
+    pwd
+)
 
 # homebrew
 ${SCRIPT_DIR}/brew.sh

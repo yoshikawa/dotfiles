@@ -29,6 +29,18 @@ apply = ['defer']
 github = 'zsh-users/zsh-syntax-highlighting'
 apply = ['defer']
 
+[plugins.F-Sy-H]
+github = 'z-shell/F-Sy-H'
+apply = ['defer']
+
+[plugins.H-S-MW]
+github = 'z-shell/H-S-MW'
+apply = ['defer']
+
+[plugins.zsh-zoxide]
+github = 'z-shell/zsh-zoxide'
+apply = ['defer']
+
 [plugins.dotfiles-sync]
 local = '~/dotfiles/zsh/sync'
 use = ['*.zsh']

@@ -14,11 +14,6 @@ export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg
 if [ -z $TTY ]; then
   export GPG_TTY=$TTY
 fi
-# Rust
-if [[ -f $HOME/.cargo/env ]]; then
-  source $HOME/.cargo/env
-  export PATH="$HOME/.cargo/bin:$PATH"
-fi
 # Go Lang
 if [ -x "$(which go)" ]; then
   export GOPATH=$HOME/go
@@ -27,12 +22,4 @@ fi
 # TMUX
 if [ -z $TMUX ]; then
   export PATH="${HOME}/local/bin:${PATH}"
-fi
-# k8s
-if [ -x "$(which kubectl)" ]; then
-  source <(kubectl completion zsh)
-fi
-# asdf
-if [ -x "$(which asdf)" ]; then
-  . $(brew --prefix asdf)/libexec/asdf.sh
 fi

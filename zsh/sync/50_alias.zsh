@@ -33,14 +33,11 @@ alias v='vim'
 #alias x=''
 alias y='yarn'
 alias z='zox'
-alias zii='zoxi'
+alias zi='zoxi'
 # editor
 alias edit='code'
-# NeoVim
-alias vim=nvim
 # fzf
-alias pj='cd $(ghq list -p | fzf)'
-alias gopn='hub browse $(ghq list | peco | cut -d "/" -f 2,3,4)'
+alias pj='cd $(ghq list -p | fzf --query "$LBUFFER")'
 alias dotfiles="cd ~/dotfiles"
 alias allps='ps aux'
 alias rezsh="exec $SHELL -l"
