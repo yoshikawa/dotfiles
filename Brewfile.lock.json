@@ -1018,45 +1018,45 @@
         }
       },
       "k9s": {
-        "version": "0.30.2",
+        "version": "0.30.3",
         "bottle": {
           "rebuild": 0,
           "root_url": "https://ghcr.io/v2/homebrew/core",
           "files": {
             "arm64_sonoma": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:34a9f69e05d5d1fdba265f68bebdcd91026895df90bd608db81901744bc5f1b9",
-              "sha256": "34a9f69e05d5d1fdba265f68bebdcd91026895df90bd608db81901744bc5f1b9"
+              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:e22556f76730f7818904c0b1f0cda8cc70debf57b424dcbaf364e1635d6c0506",
+              "sha256": "e22556f76730f7818904c0b1f0cda8cc70debf57b424dcbaf364e1635d6c0506"
             },
             "arm64_ventura": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:c4c30e736653a39f16c5ab1c899f2f3211c8a0c3d9bd4d972113b19a2f2df40e",
-              "sha256": "c4c30e736653a39f16c5ab1c899f2f3211c8a0c3d9bd4d972113b19a2f2df40e"
+              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:340d77118cb59cd7bd4a2d473e113fb0fb14287bae0814dafb01f77669af480c",
+              "sha256": "340d77118cb59cd7bd4a2d473e113fb0fb14287bae0814dafb01f77669af480c"
             },
             "arm64_monterey": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:dcd3db56c1b228a56825f00243c25833cbafcee87a3c60547d5651263008f1a5",
-              "sha256": "dcd3db56c1b228a56825f00243c25833cbafcee87a3c60547d5651263008f1a5"
+              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:835b71a1557d3f5c844ce090be65ced72cead38f0fdb50f0fe2e616f923f8d61",
+              "sha256": "835b71a1557d3f5c844ce090be65ced72cead38f0fdb50f0fe2e616f923f8d61"
             },
             "sonoma": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:015c86f8ed5d1786ff750db34cc851103fdfc4216ac41c894f8d5e73d57a50ce",
-              "sha256": "015c86f8ed5d1786ff750db34cc851103fdfc4216ac41c894f8d5e73d57a50ce"
+              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:84323cdcb5a4db74aee529078a3bb568fd1ab0bc735b63cb5d0f5b3395835029",
+              "sha256": "84323cdcb5a4db74aee529078a3bb568fd1ab0bc735b63cb5d0f5b3395835029"
             },
             "ventura": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:bb7ed620d8978eb897233f086246263792efb53f27f8214cf23d06d1065e683b",
-              "sha256": "bb7ed620d8978eb897233f086246263792efb53f27f8214cf23d06d1065e683b"
+              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:0cb0e53b767293e03ef5cc9eafcbb75abe8fa3459385a38879261376a8e3026e",
+              "sha256": "0cb0e53b767293e03ef5cc9eafcbb75abe8fa3459385a38879261376a8e3026e"
             },
             "monterey": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:f551c1796d228c16a9285838aa4fd85e89ef0e8f05a4b6a4793430d9b4452597",
-              "sha256": "f551c1796d228c16a9285838aa4fd85e89ef0e8f05a4b6a4793430d9b4452597"
+              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:11cca72d2dc1fc79ad66792a503f5311b235691f19962b2b5b0af1438d837498",
+              "sha256": "11cca72d2dc1fc79ad66792a503f5311b235691f19962b2b5b0af1438d837498"
             },
             "x86_64_linux": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:07a626f13845c408af628a3df7f364b92a71b90ba322f8af24f578265b773c5f",
-              "sha256": "07a626f13845c408af628a3df7f364b92a71b90ba322f8af24f578265b773c5f"
+              "url": "https://ghcr.io/v2/homebrew/core/k9s/blobs/sha256:091b6ab5a6667db77f9dab0481576d925389644823df8c19c275027d037b3d12",
+              "sha256": "091b6ab5a6667db77f9dab0481576d925389644823df8c19c275027d037b3d12"
             }
           }
         }
@@ -2312,7 +2312,7 @@
         "GCC": "11.3.0"
       },
       "Ubuntu 22.04.3 LTS (jammy)": {
-        "HOMEBREW_VERSION": "4.2.0",
+        "HOMEBREW_VERSION": "4.2.1",
         "HOMEBREW_PREFIX": "/home/linuxbrew/.linuxbrew",
         "Homebrew/homebrew-core": "api",
         "GCC": "11.4.0"

@@ -49,7 +49,6 @@ if type "git" >/dev/null 2>&1; then
     cd $DOTPATH && git pull
   else
     git clone ${GITHUB_URL}.git $DOTPATH
-    cd $DOPATH
   fi
 else
   echo "Install git!"
@@ -58,6 +57,7 @@ fi
 
 # env
 SCRIPT_DIR=$(
+    cd $DOTPATH
     cd $(dirname $0)
     pwd
 )
