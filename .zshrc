@@ -14,7 +14,11 @@ case ${OSTYPE} in
     ;;
 esac
 
+plugins=(
+  git
+)
+
 eval "$(sheldon source)"
-eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

@@ -4,7 +4,6 @@ shell = "zsh"
 defer = "{% for file in files %} zsh-defer source \"{{ file }}\"\n {% endfor %}"
 defer-more = "{% for file in files %} zsh-defer -t 0.5 source \"{{ file }}\"\n {% endfor %}"
 
-
 [plugins.zsh-defer]
 github = 'romkatv/zsh-defer'
 apply = ['source']
@@ -40,6 +39,9 @@ apply = ['defer']
 [plugins.zsh-zoxide]
 github = 'z-shell/zsh-zoxide'
 apply = ['defer']
+
+[plugins.oh-my-zsh]
+github = "ohmyzsh/ohmyzsh"
 
 [plugins.dotfiles-sync]
 local = '~/dotfiles/zsh/sync'
