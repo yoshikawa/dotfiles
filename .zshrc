@@ -15,7 +15,14 @@ case ${OSTYPE} in
 esac
 
 plugins=(
+  brew
+  docker
+  eza
+  fd
+  fzf
   git
+  docker
+  kubectl
 )
 
 eval "$(sheldon source)"
