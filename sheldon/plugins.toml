@@ -32,10 +32,6 @@ apply = ['defer']
 github = 'z-shell/F-Sy-H'
 apply = ['defer']
 
-[plugins.H-S-MW]
-github = 'z-shell/H-S-MW'
-apply = ['defer']
-
 [plugins.zsh-zoxide]
 github = 'z-shell/zsh-zoxide'
 apply = ['defer']

@@ -60,7 +60,5 @@ fi
 ${SCRIPTPATH}/brew.sh
 # zsh
 ${SCRIPTPATH}/switch-zsh.sh
-# tmux
-${SCRIPTPATH}/tmux.sh
 # symbolic link
 ${SCRIPTPATH}/ln.sh

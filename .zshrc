@@ -26,6 +26,7 @@ plugins=(
 )
 
 eval "$(sheldon source)"
-eval "$(mise activate zsh)"
-eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(mise activate zsh)"
+eval "$(atuin init zsh)"

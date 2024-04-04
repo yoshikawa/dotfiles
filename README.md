@@ -19,8 +19,7 @@ This repository setups the following tools.
 
 - [zsh](https://github.com/zsh-users/zsh)
   - [sheldon](https://github.com/rossmacarthur/sheldon)
-- [tmux](https://github.com/tmux/tmux)
-  - [tpm](https://github.com/tmux-plugins/tpm)
+- [zellij](https://github.com/zellij-org/zellij)
 - [helix](https://github.com/helix-editor/helix)
 
 ### LICENSE
