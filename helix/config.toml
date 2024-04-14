@@ -5,3 +5,9 @@ true-color = true
 cursorline = true
 color-modes = true
 auto-completion = true
+
+[keys.normal]
+C-y = ":sh yy" # launch filepicker
+
+[keys.normal.space.f]
+d = ":sh zellij run -fc -- yazi"

@@ -1,0 +1,19 @@
+#/usr/bin/env zsh
+
+selected_file="$1"
+
+# KEY ASSUMPTIONS
+# - editor pane was the most recently active pane
+# - yazi fp is only open floating pane
+
+# go back to editor
+zellij action toggle-floating-panes
+
+# open selected file in editor
+zellij action write 27 # send escape key
+zellij action write-chars ":open $selected_file"
+zellij action write 13 # send enter key
+
+# go back to floating yazi pane and close it
+zellij action toggle-floating-panes
+zellij action close-pane

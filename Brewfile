@@ -23,6 +23,8 @@ brew "ripgrep"
 brew "rustup-init"
 brew "sheldon"
 brew "starship"
+brew "stow"
+brew "yazi", args: ['HEAD']
 brew "zellij"
 brew "zoxide"
 brew "zsh"

@@ -1,0 +1,3 @@
+#/usr/bin/env zsh
+
+zellij run -c -f -- yazi "$PWD"

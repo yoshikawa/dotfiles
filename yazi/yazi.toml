@@ -1,0 +1,5 @@
+[opener]
+helix = [{ run = 'yz-fp "$0"', desc = "Use yazi as file picker within helix" }]
+
+[open]
+rules = [{ name = "**/*", use = "helix" }]

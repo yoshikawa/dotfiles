@@ -1,4 +1,4 @@
-function fzf-src () {
+function fzf-src() {
   local selected_dir=$(ghq list -p | fzf --reverse --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
     BUFFER="cd ${selected_dir}"
