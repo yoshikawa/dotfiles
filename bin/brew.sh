@@ -31,40 +31,28 @@ if [ "${OS_TYPE}" == "" ]; then
   echo -e "Not supported OS. [${OS_NAME}]"
 fi
 
-if [ "${OS_NAME}" == "darwin" ]; then
+case ${OSTYPE} in
+darwin*)
+  # Mac Setting
+  PATH="/usr/local/sbin:$PATH"
   if !(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    if [[ "$(uname -m)" == arm64 ]]; then
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    else
-      eval "$(/usr/local/bin/brew shellenv)"
-    fi
-    cd $DOTFILES
-    brew bundle
+  fi
+  if [[ "$(uname -m)" == arm64 ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    eval "$(/usr/local/bin/brew shellenv)"
   fi
   cd $DOTFILES
   brew bundle
-  OS='Mac'
-elif [ "${OS_NAME}" == "linux" ]; then
+  ;;
+linux*)
+  # LinuxBrew
   if !(which brew); then
-    if [[ "$(uname -r)" == *microsoft* ]]; then
-      echo 'WSL installing Homebrew'
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-      cd $DOTFILES
-      brew bundle
-    else
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-      cd $DOTFILES
-      brew bundle
-    fi
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
   cd $DOTFILES
   brew bundle
-  OS='Linux'
-elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
-  OS='Cygwin'
-else
-  echo "Your platform ($(uname -a)) is not supported."
-fi
+  ;;
+esac

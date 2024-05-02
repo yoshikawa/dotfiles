@@ -14,9 +14,7 @@ for f in .??*; do
 done
 
 # install binary
-if [ -d $LOCAL_BIN ]; then
-    mkdir -p $LOCAL_BIN
-fi
+mkdir -p $LOCAL_BIN
 stow -d "$DOTPATH"/bin -t ~/.local/bin scripts
 
 # sheldon
