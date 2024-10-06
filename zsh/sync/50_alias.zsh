@@ -32,7 +32,7 @@ alias u='cd ..'
 alias v='vim'
 #alias x=''
 alias y='yarn'
-# alias z=''
+alias z='zellij'
 # editor
 alias edit='code'
 # fzf
