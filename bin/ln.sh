@@ -5,6 +5,8 @@ LOCAL_BIN=~/.local/bin
 ZSH_HOME=~/.zsh
 IGNORE_PATTERN="^\.(git|docker)"
 
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
 cd $DOTPATH
 
 for f in .??*; do
